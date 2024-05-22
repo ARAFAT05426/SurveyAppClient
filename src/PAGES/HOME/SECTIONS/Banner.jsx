@@ -28,7 +28,7 @@ const Banner = () => {
         {images.map((item, index) => (
           <SwiperSlide key={index}>
             <div
-              className="bg-no-repeat bg-cover bg-center relative"
+              className="bg-no-repeat bg-cover bg-center bg-fixed relative"
               style={{ backgroundImage: `url(${item})` }}
             >
               <div className="px-10 lg:px-32 flex flex-col space-y-3 justify-center h-navMinus my-auto">

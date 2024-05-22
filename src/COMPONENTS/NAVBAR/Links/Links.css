@@ -25,8 +25,9 @@
 .link:hover::before {
   width: 100%;
 }
-
-.active {
+.link.active{
   color: whitesmoke;
-  background-color: black;
+}
+.link.active::before{
+  height: 0;
 }

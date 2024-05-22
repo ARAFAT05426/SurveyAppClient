@@ -5,17 +5,17 @@ const Links = () => (
   <>
     <NavLink 
       to="/" 
-      className={({ isActive }) => isActive ? "active link" : "link"}>
+      className={({ isActive }) => isActive ? "bg-black/75 text-white active link" : "link"}>
       Home
     </NavLink>
     <NavLink 
       to="/about" 
-      className={({ isActive }) => isActive ? "active link" : "link"}>
+      className={({ isActive }) => isActive ? "bg-black/75 text-white active link" : "link"}>
       About
     </NavLink>
     <NavLink 
       to="/contact" 
-      className={({ isActive }) => isActive ? "active link" : "link"}>
+      className={({ isActive }) => isActive ? "bg-black/75 text-white active link" : "link"}>
       Contact
     </NavLink>
   </>

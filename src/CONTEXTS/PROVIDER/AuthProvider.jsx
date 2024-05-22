@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { createContext, useEffect, useState } from 'react'
+import {useEffect, useState } from 'react'
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -12,7 +12,7 @@ import {
 } from 'firebase/auth'
 // import axios from 'axios'
 import auth from '../../FIREBASE/firebse.config'
-export const AuthContext = createContext(null)
+import AuthContext from '../AuthContext'
 const googleProvider = new GoogleAuthProvider()
 
 const AuthProvider = ({ children }) => {
