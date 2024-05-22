@@ -4,6 +4,7 @@ import logo from "/logo.png";
 import "./Navbar.css";
 import { useState } from "react";
 import UserDropdown from "./USERDROPDOWN/UserDropdown";
+import ThemeToggler from "./THEMETOGGLER/ThemeToggler";
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -34,7 +35,8 @@ const Navbar = () => {
         </div>
       </div>
       {/* RIGHT */}
-      <div>
+      <div className="flex items-center gap-3">
+        <ThemeToggler />
         <UserDropdown />
       </div>
     </nav>

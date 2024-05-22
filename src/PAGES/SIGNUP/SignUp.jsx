@@ -1,10 +1,10 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../../HOOKS/useAuth";
 import PasswordInp from "../../COMPONENTS/FUNCTIONALINPUTS/PasswordInp";
 import TextInp from "../../COMPONENTS/FUNCTIONALINPUTS/TextInp";
+import PrimaryBtn from "../../COMPONENTS/COMMON/BUTTONS/PrimaryBtn";
 
 const SignUp = () => {
   const img = "https://source.unsplash.com/featured/1080x720/?exotic";
@@ -12,10 +12,8 @@ const SignUp = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { createUser, signInWithGoogle, updateUserProfile } = useAuth();
-  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
-    setLoading(true);
     const { name, email, url, password } = data;
 
     try {
@@ -38,13 +36,10 @@ const SignUp = () => {
     } catch (error) {
       console.error("Sign up error:", error);
       toast.error(error.message || "An error occurred. Please try again.");
-    } finally {
-      setLoading(false);
     }
   };
 
   const handleSocialSignIn = async (method) => {
-    setLoading(true);
     try {
       // Sign in using Google
       await method();
@@ -52,8 +47,6 @@ const SignUp = () => {
     } catch (error) {
       console.error("Social sign-in error:", error);
       toast.error("An error occurred. Please try again.");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -69,11 +62,8 @@ const SignUp = () => {
             <form onSubmit={handleSubmit(onSubmit)} id="signUp" className="space-y-3">
               <TextInp title="Name" name="name" register={register} />
               <TextInp title="Email" name="email" register={register} />
-              <PasswordInp title="Password" name="password" register={register} />
-              {errors.password && <p className="text-red-500">{errors.password.message}</p>}
-              <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition" disabled={loading}>
-                {loading ? "Signing Up..." : "Sign Up"}
-              </button>
+              <PasswordInp title="Password" name="password" register={register} errors={errors} />
+              <PrimaryBtn text="Sign Up" />              
             </form>
             <div className="text-center">
               <p className="font-semibold cursor-pointer transition-all">

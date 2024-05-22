@@ -1,0 +1,49 @@
+/* ThemeToggler.css */
+.theme-toggler {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  
+  .toggle {
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: background-color 0.3s ease;
+  }
+  
+  .toggle:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .toggle-input {
+    display: none;
+  }
+  
+  .icon {
+    grid-area: 1 / 1;
+    transition: transform 0.5s ease;
+  }
+  
+  .icon--moon {
+    transition-delay: 0.2s;
+  }
+  
+  .icon--sun {
+    transform: scale(0);
+  }
+  
+  .toggle-input:checked + .icon--moon {
+    transform: rotate(360deg) scale(0);
+  }
+  
+  .toggle-input:checked ~ .icon--sun {
+    transition-delay: 0.2s;
+    transform: scale(1) rotate(360deg);
+  }
+  
