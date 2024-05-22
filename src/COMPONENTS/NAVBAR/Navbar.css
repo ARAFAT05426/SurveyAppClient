@@ -1,0 +1,56 @@
+.navbar {
+  width: 100%;
+  position: fixed;
+  align-items: center;
+  justify-content: space-between;
+  top: 0;
+  right: 0;
+  z-index: 50;
+}
+
+.snav {
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.toggle {
+  cursor: pointer;
+  padding: 0.1rem 0.3rem;
+}
+
+.togglebars {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 25px;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.togglebars span {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  border-radius: 5px;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  position: relative;
+}
+
+.togglebars.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 10px);
+}
+
+.togglebars.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.togglebars.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -10px);
+}
