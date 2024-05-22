@@ -4,28 +4,31 @@ import Home from "../PAGES/HOME/Home";
 import About from "../PAGES/ABOUT/About";
 import Contact from "../PAGES/CONTACT/Contact";
 import LogIn from "../PAGES/LOGIN/Login";
+import SignUp from "../PAGES/SIGNUP/SignUp";
+import Error from "../PAGES/ERROR/Error";
+// import Private from "../COMPONENTS/PRIVATE/Private";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
-    errorElement: <p>Error</p>,
+    errorElement: <Error />,
     children: [
       {
-        path: '/',
-        element: <Home />
+        path: "/",
+        element: <Home />,
       },
       {
-        path: '/about',
-        element: <About />
+        path: "/about",
+        element: <About />,
       },
       {
-        path: '/contact',
-        element: <Contact />
-      }
+        path: "/contact",
+        element: <Contact />,
+      },
     ],
   },
   { path: "/logIn", element: <LogIn /> },
-  { path: "/signUp", element: <p>SignUp</p> },
+  { path: "/signUp", element: <SignUp /> },
 ]);
 
 export default router;

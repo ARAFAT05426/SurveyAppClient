@@ -35,10 +35,9 @@ const UserDropdown = () => {
             onClick={() => setIsOpen(!isOpen)}
             className="w-14 h-14 p-1 bg-black/50 rounded-full cursor-pointer"
             src={user?.photoURL}
-            alt="User Avatar"
           />
           <div
-            className={`absolute right-0 mt-2 w-48 overflow-hidden bg-white shadow-lg rounded-md transition-all duration-500 ${
+            className={`absolute right-0 mt-1 overflow-hidden bg-white/50 flex flex-col shadow-lg rounded px-5 text-center transition-all duration-500 ${
               isOpen ? "max-h-96 opacity-100 py-4" : "max-h-0 opacity-0 py-0"
             }`}
             style={{
@@ -46,21 +45,21 @@ const UserDropdown = () => {
             }}
           >
             <NavLink
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              className="px-4 py-2 text-sm"
               to="/"
               onClick={() => setIsOpen(false)}
             >
               Dashboard
             </NavLink>
             <NavLink
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              className="px-4 py-2 text-sm"
               to="/profile"
               onClick={() => setIsOpen(false)}
             >
               Profile
             </NavLink>
             <NavLink
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              className="px-4 py-2 text-sm"
               to="/settings"
               onClick={() => setIsOpen(false)}
             >
@@ -71,7 +70,7 @@ const UserDropdown = () => {
                 handleLogOut();
                 setIsOpen(false);
               }}
-              className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              className=" px-4 py-2 text-sm"
             >
               Log Out
             </button>
