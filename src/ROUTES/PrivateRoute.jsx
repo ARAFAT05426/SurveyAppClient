@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { Navigate, useLocation } from "react-router-dom";
-import useAuth from "../../HOOKS/useAuth";
-import Loader from "../LOADER/Loader";
-const Private = ({ children }) => {
+import useAuth from "../Hooks/useAuth";
+import Loader from "../COMPONENTS/Loader/Loader";
+const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth()
   const location = useLocation();
   if (loading) {
@@ -15,7 +15,7 @@ const Private = ({ children }) => {
   }
   return <section>{children}</section>;
 };
-Private.propTypes = {
+PrivateRoute.propTypes = {
   children: PropTypes.node,
 };
-export default Private;
+export default PrivateRoute;

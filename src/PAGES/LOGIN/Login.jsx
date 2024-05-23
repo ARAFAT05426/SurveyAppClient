@@ -1,79 +1,54 @@
-import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import PasswordInp from "../../COMPONENTS/FUNCTIONALINPUTS/PasswordInp";
-import TextInp from "../../COMPONENTS/FUNCTIONALINPUTS/TextInp";
-import toast from "react-hot-toast";
-import useAuth from "../../HOOKS/useAuth";
-import { FcGoogle } from "react-icons/fc";
-import PrimaryBtn from "../../COMPONENTS/COMMON/BUTTONS/PrimaryBtn";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
+import { FcGoogle } from 'react-icons/fc';
+import PrimaryBtn from '../../COMPONENTS/COMMON/Buttons/PrimaryBtn';
+import TextInp from '../../COMPONENTS/FunctionalInputFields/TextInp';
+import PasswordInp from '../../COMPONENTS/FunctionalInputFields/PasswordInp';
+import { useForm } from 'react-hook-form';
+import useToast from '../../Hooks/useToast';
 
 const LogIn = () => {
-  const img = "https://source.unsplash.com/featured/1080x720/?exotic";
+  const img = 'https://source.unsplash.com/featured/1080x720/?exotic';
   const { register, handleSubmit } = useForm();
   const location = useLocation();
   const navigate = useNavigate();
   const { signInUser, signInWithGoogle } = useAuth();
+  const { showToast } = useToast();
 
   const onSubmit = async (data, e) => {
     const { email, password } = data;
 
     if (!/^(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(password)) {
-      return toast.error(
-        "Password must contain at least one lowercase letter, one uppercase letter, and be at least 6 characters long",
-        {
-          position: "top-center",
-          style: {
-            backgroundColor: "#dc3545",
-            color: "white",
-            fontSize: "13px",
-          }
-        }
+      return showToast(
+        'Password must contain at least one lowercase letter, one uppercase letter, and be at least 6 characters long',
+        'error',
+        '#dc3545'
       );
     }
 
     try {
       await signInUser(email, password);
       e.target.reset();
-      navigate(location?.state || "/");
-      toast.success("Welcome Back to KraftFix", {
-        position: "top-center",
-        style: {
-          backgroundColor: "#007bff",
-          color: "white",
-        }
-      });
+      navigate(location?.state || '/');
+      showToast('Welcome Back to KraftFix', 'success', '#007bff');
     } catch (error) {
-      console.error("Error signing in:", error);
-      toast.error(error.message || "An error occurred. Please try again.", {
-        position: "top-center",
-        style: {
-          backgroundColor: "#dc3545",
-          color: "white",
-        }
-      });
+      console.error(error.message);
+      const errorMessage = error.message.includes('auth/invalid-credential')
+        ? 'User does not exist. Please check your email or sign up.'
+        : error.message || 'An error occurred. Please try again.';
+
+      showToast(errorMessage, 'error', '#dc3545');
     }
   };
 
   const handleSocialSignIn = async (method) => {
     try {
       await method();
-      toast.success("Welcome Back to KraftFix", {
-        position: "top-center",
-        style: {
-          backgroundColor: "#007bff",
-          color: "white",
-        }
-      });
-      navigate(location?.state || "/");
+      showToast('Welcome Back to KraftFix', 'success', '#007bff');
+      navigate(location?.state || '/');
     } catch (error) {
-      console.error("Error during social sign-in:", error);
-      toast.error("An error occurred. Please try again.", {
-        position: "top-center",
-        style: {
-          backgroundColor: "#dc3545",
-          color: "white",
-        }
-      });
+      console.error('Error during social sign-in:', error);
+      showToast('An error occurred. Please try again.', 'error', '#dc3545');
     }
   };
 
@@ -98,11 +73,7 @@ const LogIn = () => {
             </p>
           </div>
           <div className="bg-white/35 backdrop-blur-md flex flex-col justify-center py-10 lg:py-20 px-7 space-y-4 rounded-s-lg lg:rounded-s-none rounded-e-lg">
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              id="logIn"
-              className="space-y-3"
-            >
+            <form onSubmit={handleSubmit(onSubmit)} id="logIn" className="space-y-3">
               <TextInp title="Email" name="email" id="email" register={register} />
               <PasswordInp title="Password" name="password" register={register} />
               <PrimaryBtn text="Log In" type="submit" />
@@ -110,11 +81,7 @@ const LogIn = () => {
             <div className="text-center">
               <p className="font-semibold cursor-pointer transition-all">
                 New Here?
-                <Link
-                  to={"/signUp"}
-                  state={location.state}
-                  className="text-blue-800 hover:underline ml-3"
-                >
+                <Link to={'/signUp'} state={location.state} className="text-blue-800 hover:underline ml-3">
                   Sign Up
                 </Link>
               </p>

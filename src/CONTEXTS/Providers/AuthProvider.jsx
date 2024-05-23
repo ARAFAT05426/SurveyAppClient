@@ -11,7 +11,7 @@ import {
   updateProfile,
 } from 'firebase/auth'
 // import axios from 'axios'
-import auth from '../../FIREBASE/firebse.config'
+import auth from '../../Firebase/firebse.config'
 import AuthContext from '../AuthContext'
 const googleProvider = new GoogleAuthProvider()
 

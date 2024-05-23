@@ -1,23 +1,22 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { BiLogInCircle } from "react-icons/bi";
-import useAuth from "../../../HOOKS/useAuth";
-import toast from "react-hot-toast";
+import useAuth from "../../../Hooks/useAuth";
+import useToast from "../../../Hooks/useToast";
 
 const UserDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = useAuth();
+  const { showToast } = useToast();
 
   const handleLogOut = async () => {
-    await logOut();
-    toast.success("We will be waiting", {
-      position: "top-center",
-      style: {
-        backgroundColor: "#007bff",
-        color: "white",
-        fontSize: "13px",
-      },
-    });
+    try {
+      await logOut();
+      showToast("We will be waiting", "success");
+    } catch (error) {
+      console.error("Logout error:", error);
+      showToast("An error occurred. Please try again.", "error");
+    }
   };
 
   return (
@@ -46,7 +45,7 @@ const UserDropdown = () => {
           >
             <NavLink
               className="px-4 py-2 text-sm"
-              to="/"
+              to="/dashboard"
               onClick={() => setIsOpen(false)}
             >
               Dashboard

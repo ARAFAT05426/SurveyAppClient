@@ -17,7 +17,7 @@ const ThemeToggler = () => {
 
   return (
     <div className="theme-toggler">
-      <label className="toggle w-10 h-10" htmlFor="theme-switch">
+      <label className="theme w-10 h-10" htmlFor="theme-switch">
         <input
           id="theme-switch"
           className="toggle-input"

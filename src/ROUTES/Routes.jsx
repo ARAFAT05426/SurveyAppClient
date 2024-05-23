@@ -1,12 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
-import Main from "../LAYOUTS/MAIN/Main";
+import Main from "../LAYOUTS/Main/Main";
 import Home from "../PAGES/HOME/Home";
-import About from "../PAGES/ABOUT/About";
-import Contact from "../PAGES/CONTACT/Contact";
-import LogIn from "../PAGES/LOGIN/Login";
-import SignUp from "../PAGES/SIGNUP/SignUp";
-import Error from "../PAGES/ERROR/Error";
-// import Private from "../COMPONENTS/PRIVATE/Private";
+import About from "../PAGES/About/About";
+import Contact from "../PAGES/Contact/Contact";
+import LogIn from "../PAGES/LogIn/Login";
+import SignUp from "../PAGES/SignUp/SignUp";
+import Error from "../PAGES/Error/Error";
+import Dashboard from "../LAYOUTS/Main/Dashboard";
+import Statistics from "../PAGES/DASHBOARD/Statistics/Statistics";
+import PrivateRoute from "./PrivateRoute";
+import UserProfile from "../PAGES/DASHBOARD/UserProfile/UserProfile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,6 +27,24 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        index: true,
+        element: <Statistics />,
+      },
+      {
+        path: "userProfile",
+        element: (
+          <PrivateRoute>
+            <UserProfile />
+          </PrivateRoute>
+        ),
       },
     ],
   },
