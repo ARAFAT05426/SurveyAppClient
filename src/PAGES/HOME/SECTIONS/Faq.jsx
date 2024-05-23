@@ -10,7 +10,7 @@ const Faq = () => {
         </p>
         <h1 className="text-5xl font-bold">FAQ</h1>
       </div>
-      <div className="flex items-center justify-around   px-32">
+      <div className="flex flex-col lg:flex-row items-center justify-around px-5 lg:px-32">
         <div>
           <img className="w-full" src="/faq.png" alt="" />
         </div>
@@ -58,6 +58,58 @@ const Faq = () => {
             <p
               className={`max-w-3xl ${
                 isOpen === 1 ? "h-24" : "h-0"
+              } transition-all overflow-hidden`}
+            >
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi
+              blanditiis enim nam voluptatibus quae tenetur voluptas aspernatur,
+              laboriosam fuga itaque, maxime laudantium, voluptate a veniam
+              soluta unde dolores obcaecati nobis consequatur expedita
+              exercitationem numquam adipisci?
+            </p>
+          </div>
+          {/* '-' Question-3 '-' */}
+          <div className="space-y-2 border-l-[6px] rounded-s-md px-3">
+            <div
+              onClick={() => setIsOpen(2)}
+              className="flex items-center justify-between cursor-pointer py-1 font-bold text-xl"
+              >
+              <h1>Do you offer team pricing?</h1>
+              <FaAngleDown
+                className={`${
+                  isOpen === 2 ? "rotate-180" : "rotate-0"
+                } transition-all`}
+                />
+            </div>
+            <hr />
+            <p
+              className={`max-w-3xl ${
+                isOpen === 2 ? "h-24" : "h-0"
+              } transition-all overflow-hidden`}
+              >
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi
+              blanditiis enim nam voluptatibus quae tenetur voluptas aspernatur,
+              laboriosam fuga itaque, maxime laudantium, voluptate a veniam
+              soluta unde dolores obcaecati nobis consequatur expedita
+              exercitationem numquam adipisci?
+            </p>
+          </div>
+            {/* '-' Question-4 '-' */}
+          <div className="space-y-2 border-l-[6px] rounded-s-md px-3">
+            <div
+              onClick={() => setIsOpen(3)}
+              className="flex items-center justify-between cursor-pointer py-1 font-bold text-xl"
+              >
+              <h1>Do you offer team pricing?</h1>
+              <FaAngleDown
+                className={`${
+                  isOpen === 3 ? "rotate-180" : "rotate-0"
+                } transition-all`}
+              />
+            </div>
+            <hr />
+            <p
+              className={`max-w-3xl ${
+                isOpen === 3 ? "h-24" : "h-0"
               } transition-all overflow-hidden`}
             >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi

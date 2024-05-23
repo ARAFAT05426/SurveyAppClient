@@ -49,13 +49,13 @@ const Banner = () => {
         <div className="flex justify-between items-center">
           <button
             id="prev"
-            className={`px-3 py-1 bg-black bg-opacity-65 absolute top-1/2 left-0 z-20 rounded-r`}
+            className={`px-3 py-1 bg-black bg-opacity-65 absolute top-2/3 lg:top-1/2 left-0 z-20 rounded-r`}
           >
             <IoIosArrowRoundBack className="text-3xl text-white" />
           </button>
           <button
             id="next"
-            className={`px-3 py-1 bg-black bg-opacity-65 absolute top-1/2 right-0 z-20 rounded-l`}
+            className={`px-3 py-1 bg-black bg-opacity-65 absolute top-2/3 lg:top-1/2 right-0 z-20 rounded-l`}
           >
             <IoIosArrowRoundForward className="text-3xl text-white" />
           </button>
