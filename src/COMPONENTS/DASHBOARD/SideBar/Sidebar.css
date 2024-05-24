@@ -1,0 +1,54 @@
+.SDS {
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    padding: 0.5rem 1rem;
+  }
+  
+  .LDS {
+    position: fixed;
+    height: 100vh;
+    width: 15rem;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  }
+  
+  .LDS_top {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+  
+  .LDS_middle {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 1rem 2rem;
+  }
+  
+  .LDS_bottom {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+  }
+  
+  .blog {
+    margin-bottom: 1rem;
+  }
+  
+  .image-container {
+    overflow: hidden;
+    border-radius: 0.25rem;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .image-container:hover {
+    transform: scale(1.05);
+  }
+  

@@ -1,90 +1,95 @@
-import { useState } from "react";
+import { GrLogout } from "react-icons/gr";
+import { AiOutlineBars } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { GoSidebarCollapse, GoSidebarExpand } from "react-icons/go";
-import { LuLogOut } from "react-icons/lu";
 import useAuth from "../../../Hooks/useAuth";
 import useToast from "../../../Hooks/useToast";
+import "./Sidebar.css";
 import Tabs from "./Tabs/Tabs";
+import { useState } from "react";
 
 const Sidebar = () => {
   const { user, logOut } = useAuth();
   const { showToast } = useToast();
-  const [isActive, setIsActive] = useState(false);
-  const handleLogOut = async () => {
+  const [isActive, setActive] = useState(false);
+
+  const handleLogout = async () => {
     try {
       await logOut();
-      showToast("You've been logged out successfully.", "success");
+      showToast("Successfully logged out!", "success", "green");
     } catch (error) {
-      console.error("Logout error:", error);
-      showToast("An error occurred during logout. Please try again.", "error");
+      showToast("Error logging out. Please try again.", "error", "red");
     }
   };
 
   return (
-    <nav>
-      <div
-        className={`${
-          isActive ? "translate-x-0" : "-translate-x-52"
-        } md:translate-x-0 md:opacity-100 transition-all duration-1000 cubic-bezier(0.68, -0.55, 0.27, 1.55) relative`}
-      >
-        {/* '-' Toggler For Small Device '-' */}
-        {isActive ? (
-          <GoSidebarExpand
-            className="cursor-pointer text-rose-500 md:hidden opacity-100 bg-white absolute left-52 z-30 transition-transform duration-500"
-            onClick={() => setIsActive(!isActive)}
-            size={35}
-          />
-        ) : (
-          <GoSidebarCollapse
-            className="cursor-pointer text-rose-500 md:hidden opacity-100 bg-white absolute left-52 z-30 transition-transform duration-500"
-            onClick={() => setIsActive(!isActive)}
-            size={35}
-          />
-        )}
-        <aside
-          className={`flex flex-col md:w-60 h-screen ${
-            isActive ? "opacity-100 w-52 px-5" : "opacity-0 w-0 px-0"
-          } md:opacity-100 md:px-10 py-10 overflow-y-auto overflow-x-hidden transition-all duration-1000 cubic-bezier(0.68, -0.55, 0.27, 1.55) bg-white border-r`}
-        >
-          {/* '-' Top Area '-' */}
-          <div>
-            <Link to={"/"} className="mx-auto">
-              <img
-                className="w-auto h-6 sm:h-7"
-                src="/logo.png"
-                alt="KraftFix Logo"
-              />
-            </Link>
-            <div className="flex flex-col items-center mt-5">
-              <img
-                className="object-cover w-24 h-24 rounded-full"
-                src={user?.photoURL || "https://via.placeholder.com/150"}
-                alt="User Avatar"
-              />
-              <h4 className="mx-2 mt-2 font-medium">
-                {user?.displayName || "Guest"}
-              </h4>
-              <p className="mx-2 mt-1 text-sm font-medium">
-                {user?.email || "guest@example.com"}
-              </p>
-            </div>
-          </div>
-          {/* '-' Middle Area '-' */}
-          <div className="flex flex-col flex-1 mt-6">
-            <Tabs />
-          </div>
-          {/* '-' Bottom Area '-' */}
-          <div>
-            <h1
-              onClick={handleLogOut}
-              className="flex items-center gap-3 px-5 py-3 rounded cursor-pointer"
-            >
-              <LuLogOut size={24} /> Log Out
-            </h1>
-          </div>
-        </aside>
+    <>
+      {/* SmallDevice Toggler */}
+      <div className="SDS flex md:hidden bg-slate-100">
+        <Link to={"/"}>
+          <img className="w-28" src="/logo.png" alt="Logo" />
+        </Link>
+        <AiOutlineBars className="cursor-pointer" onClick={() => setActive(!isActive)} size={30} />
       </div>
-    </nav>
+
+      {/* Main Content */}
+      <div
+        className={`LDS bg-slate-100 ${
+          isActive ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
+        } md:translate-x-0 md:opacity-100`}
+      >
+        {/* Top Area */}
+        <div className="LDS_top space-y-5">
+          <Link to="/">
+            <img
+              className="hidden md:flex w-36 mx-auto"
+              src="/logo.png"
+              alt="Logo"
+            />
+          </Link>
+          <div className="space-y-2">
+            <img
+              className="w-36 mx-auto p-1 rounded-full"
+              src={user?.photoURL}
+              alt="User"
+            />
+            <h1 className="font-bold text-center">{user?.displayName}</h1>
+            <p className="font-semibold text-xs text-center">{user?.email}</p>
+          </div>
+        </div>
+
+        {/* Middle Area */}
+        <div className="LDS_middle flex-1">
+          <Tabs />
+        </div>
+
+        {/* Bottom Area */}
+        <div className="LDS_bottom">
+          {/* Embedded Programming Blog */}
+          <div className="blog p-1 bg-white/15 rounded-sm shadow my-4">
+            <div className="image-container">
+              <img
+                className="h-28 w-full"
+                src="https://source.unsplash.com/featured/?technology"
+                alt=""
+              />
+            </div>
+            <a
+              href="https://dev.to/"
+              className="text-xs italic underline text-center"
+            >
+              Explore Latest Blogs
+            </a>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="px-4 py-2 flex items-center gap-3 font-semibold"
+          >
+            <GrLogout className="h-5 w-5" />
+            Log Out
+          </button>
+        </div>
+      </div>
+    </>
   );
 };
 
