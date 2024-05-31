@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types'
-import {useEffect, useState } from 'react'
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -9,93 +9,135 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
-} from 'firebase/auth'
-// import axios from 'axios'
-import auth from '../../Firebase/firebse.config'
-import AuthContext from '../AuthContext'
-const googleProvider = new GoogleAuthProvider()
+} from 'firebase/auth';
+import axios from 'axios';
+import AuthContext from '../AuthContext';
+import auth from '../../FIREBASE/firebse.config';
+
+const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const createUser = (email, password) => {
-    setLoading(true)
-    return createUserWithEmailAndPassword(auth, email, password)
-  }
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const signInUser = (email, password) => {
-    setLoading(true)
-    return signInWithEmailAndPassword(auth, email, password)
-  }
+  const createUser = async (email, password) => {
+    setLoading(true);
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  const signInWithGoogle = () => {
-    setLoading(true)
-    return signInWithPopup(auth, googleProvider)
-  }
+  const signInUser = async (email, password) => {
+    setLoading(true);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  const resetPassword = email => {
-    setLoading(true)
-    return sendPasswordResetEmail(auth, email)
-  }
+  const signInWithGoogle = async () => {
+    setLoading(true);
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const resetPassword = async (email) => {
+    setLoading(true);
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const logOut = async () => {
-    setLoading(true)
-    // await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
-    //   withCredentials: true,
-    // })
-    return signOut(auth)
-  }
-
-  const updateUserProfile = (name, photo) => {
-    return updateProfile(auth.currentUser, {
-      displayName: name,
-      photoURL: photo,
-    })
-  }
-  // Get token from server
-  // const getToken = async email => {
-  //   const { data } = await axios.post(
-  //     `${import.meta.env.VITE_API}/jwt`,
-  //     { email },
-  //     { withCredentials: true }
-  //   )
-  //   return data
-  // }
-
-  // onAuthStateChange
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, currentUser => {
-      setUser(currentUser)
-      // if (currentUser) {
-      //   getToken(currentUser.email)
-      // }
-      setLoading(false)
-    })
-    return () => {
-      return unsubscribe()
+    setLoading(true);
+    try {
+      await signOut(auth);
+      localStorage.removeItem('token');
+    } finally {
+      setLoading(false);
     }
-  }, [])
+  };
+  const saveUser = async user => {
+    const currentUser = {
+      email: user?.email,
+      role: 'user',
+      status: 'Verified',
+    }
+    const { data } = await axios.put(
+      `${import.meta.env.VITE_API}/user`,
+      currentUser
+    )
+    return data
+  }
+  const updateUserProfile = async (name, photo) => {
+    if (auth.currentUser) {
+      try {
+        await updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: photo,
+        });
+      } catch (error) {
+        console.error('Error updating profile:', error);
+      }
+    }
+  };
+
+  const getToken = async (email) => {
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API}/jwt`,
+        { email },
+        { withCredentials: true }
+      );
+      localStorage.setItem('token', data.token);
+      return data.token;
+    } catch (error) {
+      console.error('Error fetching token:', error);
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
+        await getToken(currentUser.email);
+        await saveUser(currentUser)
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const authInfo = {
     user,
     loading,
-    setLoading,
     createUser,
     signInUser,
     signInWithGoogle,
     resetPassword,
     logOut,
     updateUserProfile,
-  }
+  };
 
   return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
-  )
-}
+    <AuthContext.Provider value={authInfo}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
 AuthProvider.propTypes = {
-  // Array of children.
-  children: PropTypes.array,
-}
+  children: PropTypes.node.isRequired,
+};
 
-export default AuthProvider
+export default AuthProvider;

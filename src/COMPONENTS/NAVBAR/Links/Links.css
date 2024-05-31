@@ -6,28 +6,28 @@
   width: fit-content;
   font-size: 1rem;
   font-weight: 700;
-  color: black; /* Default color */
+  color: whitesmoke;
   transition: color 0.3s ease;
 }
 
 .link::before {
-  content: '';
+  content: "";
   position: absolute;
   width: 0%;
   height: 3px;
   bottom: 0;
   left: 0;
   border-radius: 150px;
-  background: black;
+  background: #04ee04;
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .link:hover::before {
   width: 100%;
 }
-.link.active{
-  color: whitesmoke;
+.link.active {
+  color: black;
 }
-.link.active::before{
+.link.active::before {
   height: 0;
 }

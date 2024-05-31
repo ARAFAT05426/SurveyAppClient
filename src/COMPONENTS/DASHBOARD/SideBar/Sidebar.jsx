@@ -1,8 +1,8 @@
 import { GrLogout } from "react-icons/gr";
 import { AiOutlineBars } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import useAuth from "../../../Hooks/useAuth";
-import useToast from "../../../Hooks/useToast";
+import useAuth from "../../../HOOKS/useAuth";
+import useToast from "../../../HOOKS/useToast";
 import "./Sidebar.css";
 import Tabs from "./Tabs/Tabs";
 import { useState } from "react";
@@ -24,7 +24,7 @@ const Sidebar = () => {
   return (
     <>
       {/* SmallDevice Toggler */}
-      <div className="SDS flex md:hidden bg-slate-100">
+      <div className="SDS flex md:hidden bg-black/20 backdrop-blur-3xl">
         <Link to={"/"}>
           <img className="w-28" src="/logo.png" alt="Logo" />
         </Link>
@@ -33,15 +33,15 @@ const Sidebar = () => {
 
       {/* Main Content */}
       <div
-        className={`LDS bg-slate-100 ${
-          isActive ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
-        } md:translate-x-0 md:opacity-100`}
+        className={`LDS bg-black/20 backdrop-blur-3xl ${
+          isActive ? "translate-x-0 opacity-100 w-60" : "-translate-x-full opacity-0 w-0"
+        } md:translate-x-0 md:w-60 md:opacity-100`}
       >
         {/* Top Area */}
         <div className="LDS_top space-y-5">
           <Link to="/">
             <img
-              className="hidden md:flex w-36 mx-auto"
+              className="hidden md:flex w-28 md:w-36 mx-auto"
               src="/logo.png"
               alt="Logo"
             />

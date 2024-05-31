@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { BiLogInCircle } from "react-icons/bi";
-import useAuth from "../../../Hooks/useAuth";
-import useToast from "../../../Hooks/useToast";
+import useAuth from "../../../HOOKS/useAuth";
+import useToast from "../../../HOOKS/useToast";
+import PrimaryBtn from "../../COMMON/BUTTONS/PrimaryBtn";
 
 const UserDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,13 +13,13 @@ const UserDropdown = () => {
   const handleLogOut = async () => {
     try {
       await logOut();
-      showToast("We will be waiting", "success");
+      await showToast("We will be waiting", "success");
+      setIsOpen(false);
     } catch (error) {
       console.error("Logout error:", error);
       showToast("An error occurred. Please try again.", "error");
     }
   };
-
   return (
     <div className="relative">
       {!user ? (
@@ -32,7 +33,7 @@ const UserDropdown = () => {
               e.target.src = "https://i.ibb.co/nDMvB3b/image-Errr.gif";
             }}
             onClick={() => setIsOpen(!isOpen)}
-            className="w-14 h-14 p-1 bg-black/50 rounded-full cursor-pointer"
+            className="w-14 h-14 p-1 bg-primary/80 rounded-full cursor-pointer"
             src={user?.photoURL}
           />
           <div
@@ -64,15 +65,7 @@ const UserDropdown = () => {
             >
               Settings
             </NavLink>
-            <button
-              onClick={() => {
-                handleLogOut();
-                setIsOpen(false);
-              }}
-              className=" px-4 py-2 text-sm"
-            >
-              Log Out
-            </button>
+            <PrimaryBtn className={'text-xs'} text="Log Out" type={'button'} onClick={handleLogOut} />
           </div>
         </div>
       )}

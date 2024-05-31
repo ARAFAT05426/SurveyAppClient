@@ -10,9 +10,15 @@ export default {
         navMinus: "calc(100vh - 64px)",
         half: "50vh",
       },
+      width: {
+        max: "90%"
+      },
       fontFamily: {
         thinHeading: `"Dosis", sans-serif`,
       },
+      colors:{
+        primary: "#04ee04"
+      }
     },
   },
   plugins: [],

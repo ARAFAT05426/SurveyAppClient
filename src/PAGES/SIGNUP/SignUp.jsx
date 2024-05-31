@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import useAuth from "../../Hooks/useAuth";
-import useToast from "../../Hooks/useToast";
+import useAuth from "../../HOOKS/useAuth";
+import useToast from "../../HOOKS/useToast";
 import PasswordInp from "../../COMPONENTS/FunctionalInputFields/PasswordInp";
 import TextInp from "../../COMPONENTS/FunctionalInputFields/TextInp";
-import PrimaryBtn from "../../COMPONENTS/COMMON/Buttons/PrimaryBtn";
+import PrimaryBtn from "../../COMPONENTS/COMMON/BUTTONS/PrimaryBtn";
 
 const SignUp = () => {
   const img = "https://source.unsplash.com/featured/1080x720/?exotic";

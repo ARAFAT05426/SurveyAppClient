@@ -1,11 +1,11 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import useAuth from '../../Hooks/useAuth';
+import useAuth from '../..//HOOKS/useAuth';
 import { FcGoogle } from 'react-icons/fc';
-import PrimaryBtn from '../../COMPONENTS/COMMON/Buttons/PrimaryBtn';
+import PrimaryBtn from '../../COMPONENTS/COMMON/BUTTONS/PrimaryBtn';
 import TextInp from '../../COMPONENTS/FunctionalInputFields/TextInp';
 import PasswordInp from '../../COMPONENTS/FunctionalInputFields/PasswordInp';
 import { useForm } from 'react-hook-form';
-import useToast from '../../Hooks/useToast';
+import useToast from '../../HOOKS/useToast';
 
 const LogIn = () => {
   const img = 'https://source.unsplash.com/featured/1080x720/?exotic';

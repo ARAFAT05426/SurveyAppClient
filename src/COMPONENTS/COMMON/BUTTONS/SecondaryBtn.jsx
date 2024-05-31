@@ -3,7 +3,7 @@ import "./Btn.css"
 
 const SecondaryBtn = ({ text, onClick }) => {
   return (
-    <button className='secondary' onClick={onClick}>
+    <button className='secondary font-thinHeading' onClick={onClick}>
       <span className=''>{text}</span>
     </button>
   );

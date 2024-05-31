@@ -4,8 +4,8 @@ import { CiLocationOn } from "react-icons/ci";
 import { BiPhoneCall } from "react-icons/bi";
 import { MdLocationPin } from "react-icons/md";
 import { TfiEmail } from "react-icons/tfi";
-import DummyInp from "../../COMPONENTS/DummyInputFields/DummyInp";
-import DummyTextArea from "../../COMPONENTS/DummyInputFields/DummyTextArea";
+import DummyInp from "../../COMPONENTS/DUMMYINPUTFIELDS/DummyInp";
+import DummyTextArea from "../../COMPONENTS/DUMMYINPUTFIELDS/DummyTextArea";
 const Contact = () => {
   const [overlayVisible, setOverlayVisible] = useState(true);
 

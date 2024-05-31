@@ -1,7 +1,7 @@
 import { TbError404 } from "react-icons/tb";
-import PrimaryBtn from "../../COMPONENTS/COMMON/Buttons/PrimaryBtn";
+import PrimaryBtn from "../../COMPONENTS/COMMON/BUTTONS/PrimaryBtn";
 import { Link, useNavigate } from "react-router-dom";
-import SecondaryBtn from "../../COMPONENTS/COMMON/Buttons/SecondaryBtn";
+import SecondaryBtn from "../../COMPONENTS/COMMON/BUTTONS/PrimaryBtn";
 const Error = () => {
   const navigate = useNavigate();
   const handleBack = () => {

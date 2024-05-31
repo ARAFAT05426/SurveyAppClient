@@ -11,7 +11,7 @@
   .LDS {
     position: fixed;
     height: 100vh;
-    width: 15rem;
+    overflow-x: hidden;
     top: 0;
     left: 0;
     display: flex;

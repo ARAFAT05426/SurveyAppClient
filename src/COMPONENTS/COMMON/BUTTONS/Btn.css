@@ -1,9 +1,8 @@
 .prime {
-  font-size: 17px;
   font-weight: bold;
   border: none;
   border-radius: 0.3rem;
-  background: #000000;
+  background: #070707;
 }
 
 .primary {
@@ -12,19 +11,17 @@
   border: 2px solid #000000;
   border-radius: 0.3rem;
   padding: 0.75rem 1.25rem;
-  background: #e8e8e8;
+  background: #04ee04;
   color: #000000;
   transform: translateY(-0.2em);
   transition: transform 0.1s ease;
 }
 
 .prime:hover .primary {
-  /* Pull the .prime upwards when hovered */
   transform: translateY(-0.33em);
 }
 
 .prime:active .primary {
-  /* Push the .prime downwards when pressed */
   transform: translateY(0);
 }
 
@@ -33,8 +30,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
-    background: #183153;
+    border-radius: 2px;
+    background: #04ee04;
     font-family: "Montserrat", sans-serif;
     box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -46,7 +43,7 @@
     content: " ";
     width: 0%;
     height: 100%;
-    background: #ffd401;
+    background: #FECD08;
     position: absolute;
     transition: all 0.4s ease-in-out;
     right: 0;
@@ -63,16 +60,15 @@
     text-decoration: none;
     width: 100%;
     padding: .95rem 1.5rem;
-    color: #fff;
+    color: #000000;
     font-size: 17px;
-    font-weight: 700;
+    font-weight: bolder;
     letter-spacing: 0.3em;
     z-index: 5;
     transition: all 0.3s ease-in-out;
   }
   
   .secondary:hover span {
-    color: #183153;
     animation: scaleUp 0.3s ease-in-out;
   }
   
