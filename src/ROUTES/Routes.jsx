@@ -11,6 +11,7 @@ import Main from "../LAYOUTS/MAIN/Main"
 import About from "../PAGES/ABOUT/About";
 import Dashboard from "../LAYOUTS/DASHBOARD/Dashboard";
 import AddSurvey from "../PAGES/DASHBOARD/AddSurvey/AddSurvey";
+import Pricing from "../PAGES/PRISING/Pricing";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: '/pricing',
+        element: <Pricing />
       },
       {
         path: "/about",

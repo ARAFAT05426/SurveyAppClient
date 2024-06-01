@@ -2,7 +2,7 @@
   position: relative;
   padding: 7px 15px;
   text-decoration: none;
-  border-radius: 2px;
+  border-radius: 1px;
   width: fit-content;
   font-size: 1rem;
   font-weight: 700;
@@ -17,7 +17,6 @@
   height: 3px;
   bottom: 0;
   left: 0;
-  border-radius: 150px;
   background: #04ee04;
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }

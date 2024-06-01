@@ -6,6 +6,7 @@ import TextInp from '../../COMPONENTS/FunctionalInputFields/TextInp';
 import PasswordInp from '../../COMPONENTS/FunctionalInputFields/PasswordInp';
 import { useForm } from 'react-hook-form';
 import useToast from '../../HOOKS/useToast';
+import { useState } from 'react';
 
 const LogIn = () => {
   const img = 'https://source.unsplash.com/featured/1080x720/?exotic';
@@ -14,7 +15,7 @@ const LogIn = () => {
   const navigate = useNavigate();
   const { signInUser, signInWithGoogle } = useAuth();
   const { showToast } = useToast();
-
+  const [pending, setPending] = useState(false)
   const onSubmit = async (data, e) => {
     const { email, password } = data;
 
@@ -27,6 +28,7 @@ const LogIn = () => {
     }
 
     try {
+      setPending(true)
       await signInUser(email, password);
       e.target.reset();
       navigate(location?.state || '/');
@@ -38,17 +40,22 @@ const LogIn = () => {
         : error.message || 'An error occurred. Please try again.';
 
       showToast(errorMessage, 'error', '#dc3545');
+    }finally{
+      setPending(false)
     }
   };
 
   const handleSocialSignIn = async (method) => {
     try {
+      setPending(true)
       await method();
       showToast('Welcome Back to KraftFix', 'success', '#007bff');
       navigate(location?.state || '/');
     } catch (error) {
       console.error('Error during social sign-in:', error);
       showToast('An error occurred. Please try again.', 'error', '#dc3545');
+    }finally{
+      setPending(false)
     }
   };
 
@@ -76,7 +83,7 @@ const LogIn = () => {
             <form onSubmit={handleSubmit(onSubmit)} id="logIn" className="space-y-3">
               <TextInp title="Email" name="email" id="email" register={register} />
               <PasswordInp title="Password" name="password" register={register} />
-              <PrimaryBtn text="Log In" type="submit" />
+              <PrimaryBtn text="Log In" type="submit" loading={pending} />
             </form>
             <div className="text-center">
               <p className="font-semibold cursor-pointer transition-all">
@@ -91,7 +98,7 @@ const LogIn = () => {
               <span className="font-bold text-xl">Or</span>
               <hr className="border-base-content border-b w-full" />
             </div>
-            <div className="flex flex-col lg:flex-row items-center justify-around space-y-3 lg:space-y-0">
+            <button disabled={pending} className="flex flex-col lg:flex-row items-center justify-around space-y-3 lg:space-y-0">
               <span
                 onClick={() => handleSocialSignIn(signInWithGoogle)}
                 className="px-5 py-3 h-14 bg-white rounded-md flex items-center cursor-pointer gap-2 justify-center w-3/4 lg:w-2/5 text-nowrap text-xs lg:text-xl font-bold text-black"
@@ -99,7 +106,7 @@ const LogIn = () => {
                 <FcGoogle className="text-5xl" />
                 Continue With Google
               </span>
-            </div>
+            </button>
           </div>
         </div>
       </div>

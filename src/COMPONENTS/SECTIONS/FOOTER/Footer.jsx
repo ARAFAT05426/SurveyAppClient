@@ -7,7 +7,7 @@ const Footer = () => {
         {/* '-' Left_Area '-' */}
         <div className="text-center">
           <h1 className="text-2xl">
-            <img className="w-28 mx-auto" src="/logo.png" alt="" />
+            <img className="w-48 mx-auto" src="/logo.png" alt="" />
           </h1>
           <p className="text-sm font-semibold">FrontEnd Devloper</p>
         </div>

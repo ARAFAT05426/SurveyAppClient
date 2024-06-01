@@ -37,7 +37,7 @@ const UserDropdown = () => {
             src={user?.photoURL}
           />
           <div
-            className={`absolute right-0 mt-1 overflow-hidden bg-white/50 flex flex-col shadow-lg rounded px-5 text-center transition-all duration-500 ${
+            className={`absolute right-0 mt-1 text-white overflow-hidden bg-black/50 flex flex-col shadow-lg rounded px-5 text-center transition-all duration-500 ${
               isOpen ? "max-h-96 opacity-100 py-4" : "max-h-0 opacity-0 py-0"
             }`}
             style={{

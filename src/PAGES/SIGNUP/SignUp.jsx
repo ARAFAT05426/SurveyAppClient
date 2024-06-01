@@ -5,6 +5,8 @@ import useToast from "../../HOOKS/useToast";
 import PasswordInp from "../../COMPONENTS/FunctionalInputFields/PasswordInp";
 import TextInp from "../../COMPONENTS/FunctionalInputFields/TextInp";
 import PrimaryBtn from "../../COMPONENTS/COMMON/BUTTONS/PrimaryBtn";
+import { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
 
 const SignUp = () => {
   const img = "https://source.unsplash.com/featured/1080x720/?exotic";
@@ -13,7 +15,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const { createUser, signInWithGoogle, updateUserProfile } = useAuth();
   const { showToast } = useToast();
-
+  const [pending, setPending] = useState(false)
   const onSubmit = async (data) => {
     const { name, email, url, password } = data;
 
@@ -28,6 +30,7 @@ const SignUp = () => {
 
     try {
       // Create user account
+      setPending(true)
       await createUser(email, password);
 
       // Update user profile
@@ -44,18 +47,23 @@ const SignUp = () => {
         : error.message || 'An error occurred. Please try again.';
 
       showToast(errorMessage, 'error', '#dc3545');
+    } finally{
+      setPending(false)
     }
   };
 
   const handleSocialSignIn = async (method) => {
     try {
       // Sign in using Google
+      setPending(true)
       await method();
       showToast('Welcome to KraftFix!', 'success', '#007bff');
       navigate(location?.state || "/");
     } catch (error) {
       console.error("Social sign-in error:", error);
       showToast('An error occurred. Please try again.', 'error', '#dc3545');
+    } finally{
+      setPending(false)
     }
   };
 
@@ -74,7 +82,7 @@ const SignUp = () => {
               <TextInp title="Name" name="name" register={register} />
               <TextInp title="Email" name="email" register={register} />
               <PasswordInp title="Password" name="password" register={register} errors={errors} />
-              <PrimaryBtn text="Sign Up" />
+              <PrimaryBtn text="Sign Up" loading={pending} />
             </form>
             <div className="text-center">
               <p className="font-semibold cursor-pointer transition-all">
@@ -87,11 +95,12 @@ const SignUp = () => {
               <span className="font-bold text-xl">Or</span>
               <hr className="border-base-content border-b w-full" />
             </div>
-            <div className="flex flex-col lg:flex-row items-center justify-around space-y-3 lg:space-y-0">
+            <button disabled={pending} className="flex flex-col lg:flex-row items-center justify-around space-y-3 lg:space-y-0">
               <span onClick={() => handleSocialSignIn(signInWithGoogle)} className="px-5 py-3 h-14 bg-white rounded-md flex items-center cursor-pointer gap-2 justify-center w-3/4 lg:w-2/5 text-nowrap text-sm lg:text-xl font-bold text-black">
+              <FcGoogle className="text-5xl" />
                 Continue With Google
               </span>
-            </div>
+            </button>
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ export default {
       height: {
         navMinus: "calc(100vh - 64px)",
         half: "50vh",
+        card: "500px"
       },
       width: {
         max: "90%"
@@ -17,7 +18,8 @@ export default {
         thinHeading: `"Dosis", sans-serif`,
       },
       colors:{
-        primary: "#04ee04"
+        primary: "#04ee04",
+        secondary: "#FECD08"
       }
     },
   },
