@@ -7,11 +7,11 @@ const Heading = ({ title, subtitle }) => {
 
     return (
         <div className='flex flex-col items-center space-y-3'>
-            <h1 className='text-6xl font-bold'>
+            <h1 className='text-6xl font-bold text-center'>
                 {firstWord} {remainingWords}
             </h1>
-            <hr className='border-b-2 border-b-secondary w-3/5 rounded-full' />
-            <p className='font-thinHeading text-xl'>{subtitle}</p>
+            <hr className='border-b-2 border-b-secondary w-3/5 rounded-full ' />
+            <p className='font-thinHeading text-xl text-center'>{subtitle}</p>
         </div>
     );
 };
