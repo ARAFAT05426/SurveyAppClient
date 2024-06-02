@@ -13,6 +13,7 @@ import Dashboard from "../LAYOUTS/DASHBOARD/Dashboard";
 import AddSurvey from "../PAGES/DASHBOARD/AddSurvey/AddSurvey";
 import Pricing from "../PAGES/PRISING/Pricing";
 import MyServeys from "../PAGES/DASHBOARD/MyServeys/MyServeys";
+import SurverDetails from "../PAGES/SURVEYDETAILS/SurverDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
+      {
+        path: "/survey/:id",
+        element: <SurverDetails />
+      }
     ],
   },
   {

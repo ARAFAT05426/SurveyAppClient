@@ -4,6 +4,7 @@ import AddSurveyForm from "./AddSurveyForm";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../HOOKS/useAxiosSecure";
 import useToast from "../../../HOOKS/useToast";
+import useAuth from "../../../HOOKS/useAuth";
 
 const AddSurvey = () => {
   const axiosSecure = useAxiosSecure();
@@ -22,8 +23,13 @@ const AddSurvey = () => {
   };
 
   const { register, handleSubmit } = useForm();
-
+  const {user} = useAuth()
   const handleAddSurvey = async (data) => {
+    const host = {
+      name: user?.displayName,
+      image: user?.photoURL,
+      email: user?.email,
+    }
     const surveyData = {
       title: data.title,
       description: data.description,
@@ -33,7 +39,8 @@ const AddSurvey = () => {
       status: "publish",
       timestamp: Date.now(),
       reaction: ["like", "dislike"],
-      feedback: ""
+      feedback: "",
+      host
     };
 
     try {

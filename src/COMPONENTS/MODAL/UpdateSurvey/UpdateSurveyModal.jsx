@@ -1,18 +1,24 @@
 import PropTypes from "prop-types";
-import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from "@headlessui/react";
+import {
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+  Transition,
+  TransitionChild,
+} from "@headlessui/react";
 import { Fragment, useState } from "react";
 import UpdateSurveyForm from "./UpdateSurveyForm";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../HOOKS/useAxiosSecure";
 import useToast from "../../../HOOKS/useToast";
-
-const UpdateSurveyModal = ({ isOpen, setIsModalOpen, survey }) => {
+import { RiCloseCircleLine } from "react-icons/ri";
+const UpdateSurveyModal = ({ isOpen, setIsModalOpen, survey, refetch }) => {
   const [loading, setLoading] = useState(false);
   const axiosSecure = useAxiosSecure();
   const [dates, setDates] = useState({
     startDate: new Date(survey.deadline?.from || new Date()),
     endDate: new Date(survey.deadline?.to || new Date()),
-    key: 'selection',
+    key: "selection",
   });
   const handleDates = (item) => {
     setDates(item.selection);
@@ -25,7 +31,7 @@ const UpdateSurveyModal = ({ isOpen, setIsModalOpen, survey }) => {
       category: survey.category,
       option1: survey.options[0],
       option2: survey.options[1],
-    }
+    },
   });
 
   const handleUpdate = async (data) => {
@@ -38,12 +44,13 @@ const UpdateSurveyModal = ({ isOpen, setIsModalOpen, survey }) => {
       status: "publish",
       timestamp: Date.now(),
       reaction: ["like", "dislike"],
-      feedback: ""
+      feedback: "",
     };
 
     try {
       setLoading(true);
       await axiosSecure.put(`/survey/${survey._id}`, surveyData);
+      await refetch()
       showToast("Survey updated successfully!", "success", "green");
       setIsModalOpen(false);
     } catch (err) {
@@ -55,7 +62,11 @@ const UpdateSurveyModal = ({ isOpen, setIsModalOpen, survey }) => {
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={() => setIsModalOpen(false)}>
+      <Dialog
+        as="div"
+        className="relative z-10"
+        onClose={() => setIsModalOpen(false)}
+      >
         <TransitionChild
           as={Fragment}
           enter="ease-out duration-300"
@@ -80,7 +91,13 @@ const UpdateSurveyModal = ({ isOpen, setIsModalOpen, survey }) => {
               leaveTo="opacity-0 scale-95"
             >
               <DialogPanel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all space-y-5">
-                <DialogTitle as="h3" className="text-lg font-medium text-center leading-6 text-gray-900">
+                <div className="flex justify-end">
+                  <RiCloseCircleLine className="cursor-pointer" onClick={() =>setIsModalOpen(false)} size={35} />
+                </div>
+                <DialogTitle
+                  as="h3"
+                  className="text-lg font-medium text-center leading-6 text-gray-900"
+                >
                   Update Survey Info
                 </DialogTitle>
                 <UpdateSurveyForm
@@ -91,15 +108,6 @@ const UpdateSurveyModal = ({ isOpen, setIsModalOpen, survey }) => {
                   handleSubmit={handleSubmit}
                   handleUpdate={handleUpdate}
                 />
-                <div className="mt-2">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
-                    onClick={() => setIsModalOpen(false)}
-                  >
-                    Cancel
-                  </button>
-                </div>
               </DialogPanel>
             </TransitionChild>
           </div>
@@ -112,17 +120,8 @@ const UpdateSurveyModal = ({ isOpen, setIsModalOpen, survey }) => {
 UpdateSurveyModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   setIsModalOpen: PropTypes.func.isRequired,
-  survey: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
-    options: PropTypes.arrayOf(PropTypes.string).isRequired,
-    deadline: PropTypes.shape({
-      from: PropTypes.string,
-      to: PropTypes.string
-    }),
-  }).isRequired,
+  survey: PropTypes.object.isRequired,
+  refetch: PropTypes.func
 };
 
 export default UpdateSurveyModal;

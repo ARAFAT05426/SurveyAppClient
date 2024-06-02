@@ -4,7 +4,7 @@ import useAxiosCommon from "./useAxiosCommon";
 const useAllSurveyData = () => {
   const axiosCommon = useAxiosCommon()
 
-  const { data: surveys = [], isLoading, error } = useQuery({
+  const { data: surveys = [], refetch, isLoading, error } = useQuery({
     queryKey: ["surveys"],
     queryFn: async () => {
       const { data } = await axiosCommon.get(`/survey`);
@@ -12,7 +12,7 @@ const useAllSurveyData = () => {
     },
   });
 
-  return { surveys, isLoading, error };
+  return { surveys, refetch, isLoading, error };
 };
 
 export default useAllSurveyData;

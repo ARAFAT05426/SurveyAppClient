@@ -24,7 +24,7 @@ const Sidebar = () => {
   return (
     <>
       {/* SmallDevice Toggler */}
-      <div className="SDS flex md:hidden bg-black/20 backdrop-blur-3xl">
+      <div className="SDS flex md:hidden bg-black/20 backdrop-blur-3xl w-full">
         <Link to={"/"}>
           <img className="w-28" src="/logo.png" alt="Logo" />
         </Link>
