@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import "./Btn.css";
 import { ImSpinner9 } from "react-icons/im";
-const PrimaryBtn = ({ text, type, onClick, className, loading }) => {
+const PrimaryBtn = ({ text, type, onClick, className, loading = false }) => {
   return (
     <button
       className={`w-full prime ${
-        className ? className : "text-base xl:text-xl"
+        className ? className : "text-base xl:text-xl z-0"
       }`}
       type={type}
       disabled={loading}

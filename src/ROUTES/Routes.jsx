@@ -12,6 +12,7 @@ import About from "../PAGES/ABOUT/About";
 import Dashboard from "../LAYOUTS/DASHBOARD/Dashboard";
 import AddSurvey from "../PAGES/DASHBOARD/AddSurvey/AddSurvey";
 import Pricing from "../PAGES/PRISING/Pricing";
+import MyServeys from "../PAGES/DASHBOARD/MyServeys/MyServeys";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -45,8 +46,12 @@ const router = createBrowserRouter([
         element: <PrivateRoute><Statistics /></PrivateRoute>,
       },
       {
-        path: 'addServey',
+        path: 'addSurvey',
         element: <PrivateRoute><AddSurvey /></PrivateRoute>
+      },
+      {
+        path: 'mySurveys',
+        element: <PrivateRoute><MyServeys /></PrivateRoute>
       },
       {
         path: "userProfile",
