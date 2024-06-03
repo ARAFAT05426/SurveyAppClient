@@ -47,7 +47,7 @@ const SubscriptionModal = ({ closeModal, isOpen, role, price }) => {
                 </div>
                 <div className="mt-6">
                   <Elements stripe={stripePromise}>
-                    <CheckoutForm closeModal={closeModal} price={price} />
+                    <CheckoutForm closeModal={closeModal} nrole={role} price={price} />
                   </Elements>
                 </div>
               </div>

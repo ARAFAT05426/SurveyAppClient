@@ -12,9 +12,10 @@ import About from "../PAGES/ABOUT/About";
 import Dashboard from "../LAYOUTS/DASHBOARD/Dashboard";
 import AddSurvey from "../PAGES/DASHBOARD/AddSurvey/AddSurvey";
 import Pricing from "../PAGES/PRISING/Pricing";
-import MyServeys from "../PAGES/DASHBOARD/MyServeys/MyServeys";
 import SurverDetails from "../PAGES/SURVEYDETAILS/SurverDetails";
-import Users from "../PAGES/DASHBOARD/AllUsers/Users";
+import MyServeys from "../PAGES/DASHBOARD/SURVEYOR/MyServeys/MyServeys"
+import ManageUsers from "../PAGES/DASHBOARD/ADMIN/ManageUsers/ManageUsers";
+import AdminRoute from "./AdminRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -60,8 +61,8 @@ const router = createBrowserRouter([
         element: <PrivateRoute><MyServeys /></PrivateRoute>
       },
       {
-        path: "/allUsers",
-        element: <PrivateRoute><Users /></PrivateRoute>
+        path: "allUsers",
+        element: <PrivateRoute><AdminRoute><ManageUsers /></AdminRoute></PrivateRoute>
       },
       {
         path: "userProfile",

@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import { useState } from "react";
-import UpdateSurveyModal from "../../../COMPONENTS/MODAL/UpdateSurvey/UpdateSurveyModal";
-import DeleteSurveyModal from "../../../COMPONENTS/MODAL/DeleteSurveyModal";
+import DeleteSurveyModal from "../../../../COMPONENTS/MODAL/DeleteSurveyModal";
+import UpdateSurveyModal from "../../../../COMPONENTS/MODAL/UpdateSurvey/UpdateSurveyModal";
 
 const SurveyTr = ({ survey, refetch }) => {
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility

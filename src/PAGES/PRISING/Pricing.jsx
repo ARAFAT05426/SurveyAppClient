@@ -14,7 +14,7 @@ const Pricing = () => {
       </div>
       <div className="relative z-10 flex flex-col lg:flex-row justify-between gap-10 items-center max-w-7xl mx-auto py-20">
         <PriceCard
-          plan="Basic User"
+          plan="User"
           price={"FREE"}
           features={[
             "Voting Access",
@@ -27,7 +27,7 @@ const Pricing = () => {
           ]}
         />
         <PriceCard
-          plan="Pro User"
+          plan="ProUser"
           price={19.99}
           features={[
             "Comment Feature",

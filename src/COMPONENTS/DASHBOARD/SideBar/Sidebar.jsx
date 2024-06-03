@@ -4,14 +4,16 @@ import { Link } from "react-router-dom";
 import useAuth from "../../../HOOKS/useAuth";
 import useToast from "../../../HOOKS/useToast";
 import "./Sidebar.css";
-import Tabs from "./Tabs/Tabs";
 import { useState } from "react";
+import useRole from "../../../HOOKS/useRole";
+import AdminTabs from "./Tabs/AdminTabs";
+import SuveyorTabs from "./Tabs/SuveyorTabs";
 
 const Sidebar = () => {
   const { user, logOut } = useAuth();
   const { showToast } = useToast();
   const [isActive, setActive] = useState(false);
-
+  const {role} = useRole()
   const handleLogout = async () => {
     try {
       await logOut();
@@ -32,7 +34,7 @@ const Sidebar = () => {
       </div>
 
       {/* Main Content */}
-      <div
+      <nav
         className={`LDS bg-black/20 backdrop-blur-3xl ${
           isActive ? "translate-x-0 opacity-100 w-60" : "-translate-x-full opacity-0 w-0"
         } md:translate-x-0 md:w-60 md:opacity-100`}
@@ -59,7 +61,9 @@ const Sidebar = () => {
 
         {/* Middle Area */}
         <div className="LDS_middle flex-1">
-          <Tabs />
+          {
+            role === "admin"? <AdminTabs /> : role === "surveyor" ? <SuveyorTabs /> : ""
+          }
         </div>
 
         {/* Bottom Area */}
@@ -88,7 +92,7 @@ const Sidebar = () => {
             Log Out
           </button>
         </div>
-      </div>
+      </nav>
     </>
   );
 };
