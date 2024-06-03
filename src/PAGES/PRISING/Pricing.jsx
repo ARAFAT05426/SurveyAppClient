@@ -14,25 +14,44 @@ const Pricing = () => {
       </div>
       <div className="relative z-10 flex flex-col lg:flex-row justify-between gap-10 items-center max-w-7xl mx-auto py-20">
         <PriceCard
-          plan="Basic"
-          price={9.99}
-          features={["Feature 1", "Feature 2", "Feature 3"]}
+          plan="Basic User"
+          price={"FREE"}
+          features={[
+            "Voting Access",
+            "Basic Reaction",
+            "Participation",
+            "Mobile-Friendly Surveys",
+            "Auto-Save Progress",
+            "Basic Embedding Options",
+            "Interactive Dashboards"
+          ]}
         />
         <PriceCard
-          plan="Pro"
+          plan="Pro User"
           price={19.99}
-          features={["Feature 1", "Feature 2", "Feature 3", "Feature 4"]}
+          features={[
+            "Comment Feature",
+            "Advanced Reporting",
+            "Increased Response Limit",
+            "Survey Logic",
+            "Reminder Emails",
+            "Password Protection",
+            "Interactive Dashboards"
+          ]}
           best={true}
         />
         <PriceCard
-          plan="Premium"
+          plan="Surveyor"
           price={29.99}
           features={[
-            "Feature 1",
-            "Feature 2",
-            "Feature 3",
-            "Feature 4",
-            "Feature 5",
+            "All Pro Features",
+            "Priority Support",
+            "Advanced Security",
+            "Consulting Services",
+            "Unlimited Surveys",
+            "Team Collaboration",
+            "Personalized Training and Onboarding",
+            "Interactive Dashboards"
           ]}
         />
       </div>

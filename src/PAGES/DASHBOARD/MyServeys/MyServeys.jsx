@@ -17,7 +17,7 @@ const MySurveys = () => {
       </div>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow-md rounded-md p-1">
-          <thead className="bg-primary/15">
+          <thead className="">
             <tr>
               <th className="px-4 lg:px-6 py-3 text-left text-md font-bold uppercase tracking-wider">
                 Title

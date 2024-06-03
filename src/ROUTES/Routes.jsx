@@ -14,6 +14,7 @@ import AddSurvey from "../PAGES/DASHBOARD/AddSurvey/AddSurvey";
 import Pricing from "../PAGES/PRISING/Pricing";
 import MyServeys from "../PAGES/DASHBOARD/MyServeys/MyServeys";
 import SurverDetails from "../PAGES/SURVEYDETAILS/SurverDetails";
+import Users from "../PAGES/DASHBOARD/AllUsers/Users";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: 'mySurveys',
         element: <PrivateRoute><MyServeys /></PrivateRoute>
+      },
+      {
+        path: "/allUsers",
+        element: <PrivateRoute><Users /></PrivateRoute>
       },
       {
         path: "userProfile",
