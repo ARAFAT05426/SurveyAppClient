@@ -16,6 +16,7 @@ import SurverDetails from "../PAGES/SURVEYDETAILS/SurverDetails";
 import MyServeys from "../PAGES/DASHBOARD/SURVEYOR/MyServeys/MyServeys"
 import ManageUsers from "../PAGES/DASHBOARD/ADMIN/ManageUsers/ManageUsers";
 import AdminRoute from "./AdminRoute";
+import SuveyorRoute from "./SuveyorRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -58,7 +59,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'mySurveys',
-        element: <PrivateRoute><MyServeys /></PrivateRoute>
+        element: <PrivateRoute><SuveyorRoute><MyServeys /></SuveyorRoute></PrivateRoute>
       },
       {
         path: "allUsers",

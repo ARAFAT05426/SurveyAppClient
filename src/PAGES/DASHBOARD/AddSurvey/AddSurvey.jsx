@@ -13,7 +13,7 @@ const AddSurvey = () => {
   const [dates, setDates] = useState({
     startDate: new Date(),
     endDate: new Date(),
-    key: 'selection',
+    key: "selection",
   });
 
   const [loading, setLoading] = useState(false);
@@ -23,30 +23,49 @@ const AddSurvey = () => {
   };
 
   const { register, handleSubmit } = useForm();
-  const {user} = useAuth()
-  const handleAddSurvey = async (data) => {
+  const { user } = useAuth();
+
+  const handleAddSurvey = async (data, e) => {
     const host = {
       name: user?.displayName,
       image: user?.photoURL,
       email: user?.email,
-    }
+    };
+
+    // Map through the question keys and filter out those starting with 'question'
+    const questions = Object.keys(data)
+      .filter((key) => key.startsWith("question"))
+      .map((key, index) => ({
+        question: data[key], // Get the question value
+        options: [
+          {
+            option: `${data[`option${index}`]}`,
+            votecount: 0,
+          },
+          {
+            option: `${data[`option${index}`]}`,
+            votecount: 0,
+          },
+        ],
+      }));
     const surveyData = {
+      surveyId: "unique_survey_id", // Add a unique survey ID
       title: data.title,
       description: data.description,
-      options: [data.option1, data.option2],
       category: data.category,
+      questions: [...questions],
       deadline: { from: dates.startDate, to: dates.endDate },
       status: "publish",
       timestamp: Date.now(),
       reaction: ["like", "dislike"],
       feedback: "",
-      host
+      host,
     };
-
     try {
       setLoading(true);
       await axiosSecure.post(`/survey`, surveyData);
       showToast("Survey added successfully!", "success", "green");
+      e.target.reset();
     } catch (err) {
       showToast("Failed to add survey. Please try again.", "error", "red");
     } finally {

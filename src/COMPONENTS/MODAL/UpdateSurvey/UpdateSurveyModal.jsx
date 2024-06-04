@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../HOOKS/useAxiosSecure";
 import useToast from "../../../HOOKS/useToast";
 import { RiCloseCircleLine } from "react-icons/ri";
+
 const UpdateSurveyModal = ({ isOpen, setIsModalOpen, survey, refetch }) => {
   const [loading, setLoading] = useState(false);
   const axiosSecure = useAxiosSecure();
@@ -24,33 +25,31 @@ const UpdateSurveyModal = ({ isOpen, setIsModalOpen, survey, refetch }) => {
     setDates(item.selection);
   };
   const { showToast } = useToast();
-  const { register, handleSubmit } = useForm({
-    defaultValues: {
-      title: survey.title,
-      description: survey.description,
-      category: survey.category,
-      option1: survey.options[0],
-      option2: survey.options[1],
-    },
-  });
-
-  const handleUpdate = async (data) => {
+  const { register, handleSubmit } = useForm();
+  
+  const handleUpdate = async (data, e) => {
+    console.log(data);
     const surveyData = {
       title: data.title,
       description: data.description,
-      options: [data.option1, data.option2],
-      category: data.category,
+      questions: data.questions.map((q) => ({
+        question: q.question,
+        options: q.options.map((option) => ({
+          option: option,
+        })),
+      })),
       deadline: { from: dates.startDate, to: dates.endDate },
       status: "publish",
       timestamp: Date.now(),
       reaction: ["like", "dislike"],
       feedback: "",
     };
-
+    console.log(surveyData);
     try {
       setLoading(true);
       await axiosSecure.put(`/survey/${survey._id}`, surveyData);
-      await refetch()
+      await refetch();
+      e.target.reset();
       showToast("Survey updated successfully!", "success", "green");
       setIsModalOpen(false);
     } catch (err) {
@@ -107,6 +106,7 @@ const UpdateSurveyModal = ({ isOpen, setIsModalOpen, survey, refetch }) => {
                   handleDates={handleDates}
                   handleSubmit={handleSubmit}
                   handleUpdate={handleUpdate}
+                  questions={survey?.questions}
                 />
               </DialogPanel>
             </TransitionChild>
@@ -121,7 +121,7 @@ UpdateSurveyModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   setIsModalOpen: PropTypes.func.isRequired,
   survey: PropTypes.object.isRequired,
-  refetch: PropTypes.func
+  refetch: PropTypes.func,
 };
 
 export default UpdateSurveyModal;

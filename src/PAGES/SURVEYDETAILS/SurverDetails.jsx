@@ -1,36 +1,40 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosCommon from "../../HOOKS/useAxiosCommon";
-import { useParams } from "react-router-dom";
-import Loader from "../../COMPONENTS/LOADER/Loader";
-import Surveynow from "./Surveynow";
+import { useQuery } from '@tanstack/react-query';
+import useAxiosCommon from '../../HOOKS/useAxiosCommon';
+import { useParams } from 'react-router-dom';
+import Loader from '../../COMPONENTS/LOADER/Loader';
+import Surveynow from './Surveynow';
+import SurveyComments from './SurveyComments';
 
-const SurverDetails = () => {
+const SurveyDetails = () => {
   const { id } = useParams();
   const axiosCommon = useAxiosCommon();
   const {
     data: survey = [],
+    // eslint-disable-next-line no-unused-vars
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["survey"],
+    queryKey: ['survey'],
     queryFn: async () => {
       const { data } = await axiosCommon.get(`/survey/${id}`);
       return data;
     },
   });
+
   if (isLoading) {
     return <Loader />;
   }
+
   return (
-    <section className="min-h-navMinus pt-16">
-      <div className="flex justify-between">
-        <div className="w-1/2 h-[80vh] flex justify-center">
-          <img className="w-full" src="/details.gif" alt="" />
+    <section className="min-h-screen bg-gray-100 py-20">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col gap-8">
+          <Surveynow survey={survey} />
+          <SurveyComments />
         </div>
-        <Surveynow />
       </div>
     </section>
   );
 };
 
-export default SurverDetails;
+export default SurveyDetails;

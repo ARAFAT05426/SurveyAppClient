@@ -7,7 +7,6 @@ import UpdateSurveyModal from "../../../../COMPONENTS/MODAL/UpdateSurvey/UpdateS
 const SurveyTr = ({ survey, refetch }) => {
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
   const [isdeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
   return (
     <tr
       key={survey._id}
@@ -17,7 +16,7 @@ const SurveyTr = ({ survey, refetch }) => {
         {survey.title}
       </td>
       <td className="px-4 lg:px-6 py-4 text-sm text-gray-500">
-        {survey.description.slice(0, 100)}
+        {survey?.description}
       </td>
       <td className="px-4 lg:px-6 py-4 text-sm font-medium">
         {new Date(survey.timestamp).toLocaleDateString()}

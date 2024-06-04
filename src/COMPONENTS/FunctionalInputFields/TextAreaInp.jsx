@@ -11,7 +11,7 @@ const TextAreaInp = ({ title, name, register }) => (
       id={name}
       name={name}
       placeholder={`Enter ${name.toLowerCase()}`}
-      className="px-5 py-3 h-24 font-semibold w-full border focus-within:outline-none"
+      className="px-5 py-3 h-40 font-semibold w-full border focus-within:outline-none"
       {...register(name, { required: `${name} is required` })}
     ></textarea>
   </div>

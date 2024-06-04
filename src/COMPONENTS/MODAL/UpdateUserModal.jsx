@@ -4,7 +4,7 @@ import { Dialog, Listbox, Transition, TransitionChild, DialogTitle, DialogPanel,
 import { BsCheckLg } from 'react-icons/bs';
 import { AiOutlineDown } from 'react-icons/ai';
 
-const roles = ['guest', 'host', 'admin'];
+const roles = ['user', 'prouser', 'surveyor', 'admin'];
 
 const UpdateUserModal = ({ setIsOpen, isOpen, modalHandler, user }) => {
   const [selected, setSelected] = useState(user?.role);
@@ -63,7 +63,7 @@ const UpdateUserModal = ({ setIsOpen, isOpen, modalHandler, user }) => {
                         >
                           {({ selected }) => (
                             <>
-                              <span className={`${selected ? 'font-semibold' : 'font-normal'} block truncate`}>
+                              <span className={`${selected ? 'font-semibold' : 'font-normal'} block truncate cursor-pointer`}>
                                 {role}
                               </span>
                               {selected ? (

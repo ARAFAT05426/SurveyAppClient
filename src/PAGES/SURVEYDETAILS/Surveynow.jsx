@@ -1,30 +1,75 @@
-const Surveynow = () => {
+import { useForm } from "react-hook-form";
+import PropTypes from "prop-types";
+import PrimaryBtn from "../../COMPONENTS/COMMON/BUTTONS/PrimaryBtn";
+import useAxiosCommon from "../../HOOKS/useAxiosCommon";
+import { toast } from "react-hot-toast";
+import useAuth from "../../HOOKS/useAuth";
+
+const Surveynow = ({ survey }) => {
+  const { register, handleSubmit } = useForm();
+  const axiosCommon = useAxiosCommon();
+  const {user} = useAuth()
+  console.log(survey.voters);
+  const onSubmit = async (data) => {
+    if(!user){
+      return toast.error("plz login to vote")
+    } else if(survey.voters.map(v =>v.email === user?.email)){
+      return toast.error("You have already voted once")
+    }
+    try {
+      const payload = {
+        voter: user?.email,
+        questions: survey.questions.map((question, questionIndex) => ({
+          question: question.question,
+          selectedOption: data[`question${questionIndex}`]
+        }))
+      };
+      await axiosCommon.patch(`/survey/${survey._id}`, payload);
+      toast.success("Vote submitted successfully");
+    } catch (error) {
+      console.error("Error updating survey:", error);
+      toast.error("Error submitting vote. Please try again.");
+    }
+  };
+
   return (
-    <div className="px-10 py-5 w-1/2">
-      <h1 className="text-7xl font-bold text-center">Question</h1>
-      <p className="text-center max-w-2xl mx-auto">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos quis qui
-        ratione nesciunt doloremque quod repellendus enim, molestiae voluptatum
-        ipsum unde? Consequatur dolorem suscipit et quo, illum provident quaerat
-        culpa cum omnis fugiat numquam, modi at soluta quas deleniti doloribus
-        id optio facere dolore facilis nisi quisquam! Quidem, facere voluptas!
-      </p>
-      <div>
-        <form action="">
-          <div className="flex items-center justify-between max-w-xs m-auto h-20 ">
-            <label htmlFor="option1">
-              <input type="radio" id="option1" />
-              Option 1
-            </label>
-            <label htmlFor="option1">
-              <input type="radio" id="option1" />
-              Option 1
-            </label>
+    <div className="p-6 bg-white rounded-lg shadow-md">
+      <h1 className="text-3xl font-bold text-center text-gray-900 mb-8">
+        {survey?.title}
+      </h1>
+      <p className="text-center text-gray-700 mb-8">{survey?.description}</p>
+      <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+        {survey?.questions.map((question, questionIndex) => (
+          <div key={questionIndex} className="mb-8">
+            <h2 className="text-xl text-center font-semibold text-gray-800">
+              {question.question}
+            </h2>
+            <div className="flex items-center justify-between max-w-lg mx-auto mt-4">
+              {question.options.map((option, optionIndex) => (
+                <label key={optionIndex} className="option">
+                  <input
+                    type="radio"
+                    name={`question${questionIndex}`}
+                    value={option.option}
+                    {...register(`question${questionIndex}`)}
+                    className="mr-2"
+                  />
+                  <span className="text">{option.option}</span>
+                </label>
+              ))}
+            </div>
           </div>
-        </form>
-      </div>
+        ))}
+        <div className="flex justify-center">
+        <PrimaryBtn text="Vote" type="submit" />
+        </div>
+      </form>
     </div>
   );
+};
+
+Surveynow.propTypes = {
+  survey: PropTypes.object.isRequired,
 };
 
 export default Surveynow;

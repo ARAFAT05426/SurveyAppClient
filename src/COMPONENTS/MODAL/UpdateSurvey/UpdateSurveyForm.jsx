@@ -9,6 +9,7 @@ import PrimaryBtn from "../../COMMON/BUTTONS/PrimaryBtn";
 const UpdateSurveyForm = ({
   dates,
   loading,
+  questions,
   register,
   handleSubmit,
   handleUpdate,
@@ -31,9 +32,26 @@ const UpdateSurveyForm = ({
         register={register}
         options={surveyCategories}
       />
-      <TextInp title={"Option1"} name="option1" register={register} />
-      <TextInp title={"Option2"} name="option2" register={register} />
-      <div className="p-2 w-full lg:w-fit mx-auto border rounded shadow">
+      {questions?.map((q, qi) => (
+        <div key={qi}>
+          <TextInp
+            title={`Question ${qi + 1}`}
+            name={`questions[${qi}].question`}
+            register={register}
+            defaultValue={q.question}
+          />
+          {q.options?.map((option, oi) => (
+            <TextInp
+              key={oi}
+              title={`Option ${oi + 1}`}
+              name={`questions[${qi}].options[${oi}]`}
+              register={register}
+              defaultValue={option}
+            />
+          ))}
+        </div>
+      ))}
+      <div className="p-1 w-full lg:w-fit mx-auto border rounded shadow">
         <DateRange
           rangeColors={["#04ee04"]}
           editableDateInputs={true}
@@ -56,6 +74,7 @@ UpdateSurveyForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleUpdate: PropTypes.func.isRequired,
   handleDates: PropTypes.func.isRequired,
+  questions: PropTypes.array.isRequired,
 };
 
 export default UpdateSurveyForm;
