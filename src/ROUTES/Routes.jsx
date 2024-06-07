@@ -15,10 +15,11 @@ import Pricing from "../PAGES/PRISING/Pricing";
 import SurverDetails from "../PAGES/SURVEYDETAILS/SurverDetails";
 import MyServeys from "../PAGES/DASHBOARD/SURVEYOR/MyServeys/MyServeys";
 import ManageUsers from "../PAGES/DASHBOARD/ADMIN/ManageUsers/ManageUsers";
-import AdminRoute from "./AdminRoute";
-import SuveyorRoute from "./SuveyorRoute";
+// import AdminRoute from "./AdminRoute";
+// import SuveyorRoute from "./SuveyorRoute";
 import Voters from "../PAGES/DASHBOARD/SURVEYOR/Voters/Voters";
 import Payments from "../PAGES/DASHBOARD/ADMIN/Payments/Payments";
+import PerticipateSurvey from "../PAGES/DASHBOARD/USER/PerticipateSurvey/PerticipateSurvey";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "perticipate",
+        element: <PrivateRoute><PerticipateSurvey /></PrivateRoute>
+      },
+      {
         path: "addSurvey",
         element: (
           <PrivateRoute>
@@ -75,9 +80,7 @@ const router = createBrowserRouter([
         path: "mySurveys",
         element: (
           <PrivateRoute>
-            <SuveyorRoute>
               <MyServeys />
-            </SuveyorRoute>
           </PrivateRoute>
         ),
       },
@@ -85,9 +88,7 @@ const router = createBrowserRouter([
         path: "survey/:id",
         element: (
           <PrivateRoute>
-            <SuveyorRoute>
               <Voters />
-            </SuveyorRoute>
           </PrivateRoute>
         ),
       },
@@ -95,15 +96,13 @@ const router = createBrowserRouter([
         path: "allUsers",
         element: (
           <PrivateRoute>
-            <AdminRoute>
               <ManageUsers />
-            </AdminRoute>
           </PrivateRoute>
         ),
       },
       {
         path: "payments",
-        element: <PrivateRoute><AdminRoute><Payments /></AdminRoute></PrivateRoute>
+        element: <PrivateRoute><Payments /></PrivateRoute>
       },
       {
         path: "userProfile",

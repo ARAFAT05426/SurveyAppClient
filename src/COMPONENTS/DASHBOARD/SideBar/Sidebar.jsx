@@ -1,19 +1,17 @@
 import { GrLogout } from "react-icons/gr";
 import { AiOutlineBars } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../HOOKS/useAuth";
 import useToast from "../../../HOOKS/useToast";
 import "./Sidebar.css";
 import { useState } from "react";
-import useRole from "../../../HOOKS/useRole";
-import AdminTabs from "./Tabs/AdminTabs";
-import SuveyorTabs from "./Tabs/SuveyorTabs";
-
+import { FaMoneyCheckDollar, FaUsersGear } from "react-icons/fa6";
+import { MdList, MdPlaylistAdd } from "react-icons/md";
+import { RiSurveyLine } from "react-icons/ri";
 const Sidebar = () => {
   const { user, logOut } = useAuth();
   const { showToast } = useToast();
   const [isActive, setActive] = useState(false);
-  const {role} = useRole()
   const handleLogout = async () => {
     try {
       await logOut();
@@ -30,13 +28,19 @@ const Sidebar = () => {
         <Link to={"/"}>
           <img className="w-28" src="/logo.png" alt="Logo" />
         </Link>
-        <AiOutlineBars className="cursor-pointer" onClick={() => setActive(!isActive)} size={30} />
+        <AiOutlineBars
+          className="cursor-pointer"
+          onClick={() => setActive(!isActive)}
+          size={30}
+        />
       </div>
 
       {/* Main Content */}
       <nav
         className={`LDS bg-black/20 backdrop-blur-3xl ${
-          isActive ? "translate-x-0 opacity-100 w-60" : "-translate-x-full opacity-0 w-0"
+          isActive
+            ? "translate-x-0 opacity-100 w-60"
+            : "-translate-x-full opacity-0 w-0"
         } md:translate-x-0 md:w-60 md:opacity-100`}
       >
         {/* Top Area */}
@@ -61,9 +65,61 @@ const Sidebar = () => {
 
         {/* Middle Area */}
         <div className="LDS_middle flex-1">
-          {
-            role === "admin"? <AdminTabs /> : role === "surveyor" ? <SuveyorTabs /> : ""
-          }
+          <NavLink
+            to="perticipate"
+            className={({ isActive }) =>
+              `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
+                isActive ? "border-l-primary/85" : "border-l-transparent"
+              }`
+            }
+          >
+            <RiSurveyLine className="text-xl" size={24} />
+            Perticipate
+          </NavLink>
+          <NavLink
+            to="allUsers"
+            className={({ isActive }) =>
+              `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
+                isActive ? "border-l-primary/85" : "border-l-transparent"
+              }`
+            }
+          >
+            <FaUsersGear className="text-xl" size={24} />
+            All Users
+          </NavLink>
+          <NavLink
+            to="payments"
+            className={({ isActive }) =>
+              `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
+                isActive ? "border-l-primary/85" : "border-l-transparent"
+              }`
+            }
+          >
+            <FaMoneyCheckDollar className="text-xl" size={24} />
+            Payments
+          </NavLink>
+          <NavLink
+            to="addSurvey"
+            className={({ isActive }) =>
+              `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
+                isActive ? "border-l-primary/85" : "border-l-transparent"
+              }`
+            }
+          >
+            <MdPlaylistAdd className="text-xl" size={24} />
+            Add Survey
+          </NavLink>
+          <NavLink
+            to="mySurveys"
+            className={({ isActive }) =>
+              `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
+                isActive ? "border-l-primary/85" : "border-l-transparent"
+              }`
+            }
+          >
+            <MdList className="text-xl" size={24} />
+            My Surveys
+          </NavLink>
         </div>
 
         {/* Bottom Area */}

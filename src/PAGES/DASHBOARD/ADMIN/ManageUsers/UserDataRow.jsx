@@ -54,23 +54,9 @@ const UserDataRow = ({ user, refetch }) => {
         <p className='text-gray-900 whitespace-no-wrap'>{new Date(user.timestamp).toLocaleDateString()}</p>
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        {user?.status ? (
-          <p
-            className={`${
-              user.status === 'Verified' ? 'text-green-500' : 'text-yellow-500'
-            } whitespace-no-wrap`}
-          >
-            {user.status}
-          </p>
-        ) : (
-          <p className='text-red-500 whitespace-no-wrap'>Unavailable</p>
-        )}
-      </td>
-
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <button
           onClick={() => setIsOpen(true)}
-          className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+          className='relative cursor-pointer inline-block px-4 py-2 font-semibold text-green-900 leading-tight'
         >
           <span
             aria-hidden='true'

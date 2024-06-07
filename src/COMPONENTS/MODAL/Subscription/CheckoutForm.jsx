@@ -84,12 +84,13 @@ const CheckoutForm = ({ closeModal, price, nrole }) => {
     }
 
     if (paymentIntent.status === "succeeded") {
+      const role = nrole.toLowerCase();
       const payment = {
+        role: role,
         amount: paymentIntent.amount/100,
         currency: paymentIntent.currency,
         time: Date.now()
       }
-      const role = nrole.toLowerCase();
       const newData = {
         role,
         payment,
