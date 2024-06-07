@@ -59,6 +59,8 @@ const AddSurvey = () => {
       timestamp: Date.now(),
       reaction: ["like", "dislike"],
       feedback: "",
+      comments: [], 
+      voters: [],
       host,
     };
     try {

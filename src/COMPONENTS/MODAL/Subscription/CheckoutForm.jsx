@@ -31,7 +31,7 @@ const CheckoutForm = ({ closeModal, price, nrole }) => {
   };
   const { mutateAsync } = useMutation({
     mutationFn: async (role) => {
-      const { data } = await axiosSecure.patch(`/users/update/${user?.email}`, {role});
+      const { data } = await axiosSecure.patch(`/users/update/${user?.email}`, role);
       return data;
     },
     onSuccess: () => {
@@ -84,8 +84,17 @@ const CheckoutForm = ({ closeModal, price, nrole }) => {
     }
 
     if (paymentIntent.status === "succeeded") {
+      const payment = {
+        amount: paymentIntent.amount/100,
+        currency: paymentIntent.currency,
+        time: Date.now()
+      }
       const role = nrole.toLowerCase();
-      await mutateAsync(role)
+      const newData = {
+        role,
+        payment,
+      }
+      await mutateAsync(newData)
     }
 
     setProcessing(false);

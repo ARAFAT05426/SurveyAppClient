@@ -11,7 +11,6 @@ const PriceCard = ({ plan, price, features, best }) => {
     setIsOpen(true);
   };
   const { role } = useRole();
-  console.log(role);
   return (
     <div
       className={`${

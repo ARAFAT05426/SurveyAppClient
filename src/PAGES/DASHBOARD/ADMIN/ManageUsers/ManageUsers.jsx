@@ -18,9 +18,6 @@ const ManageUsers = () => {
       }
     },
   });
-
-  console.log(users);
-
   if (isLoading) return <Loader />;
   if (error) return <div>Error: {error.message}</div>;
 

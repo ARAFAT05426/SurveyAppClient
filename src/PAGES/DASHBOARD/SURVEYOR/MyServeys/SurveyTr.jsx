@@ -1,12 +1,14 @@
 import PropTypes from "prop-types";
-import { BiEdit, BiTrash } from "react-icons/bi";
+import { BiEdit } from "react-icons/bi";
 import { useState } from "react";
-import DeleteSurveyModal from "../../../../COMPONENTS/MODAL/DeleteSurveyModal";
+// import DeleteSurveyModal from "../../../../COMPONENTS/MODAL/DeleteSurveyModal";
 import UpdateSurveyModal from "../../../../COMPONENTS/MODAL/UpdateSurvey/UpdateSurveyModal";
+import { Link } from "react-router-dom";
+import SecondaryBtn from "../../../../COMPONENTS/COMMON/BUTTONS/SecondaryBtn";
 
 const SurveyTr = ({ survey, refetch }) => {
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
-  const [isdeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  // const [isdeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   return (
     <tr
       key={survey._id}
@@ -28,10 +30,14 @@ const SurveyTr = ({ survey, refetch }) => {
         >
           <BiEdit size={24} />
         </button>
-        <button className="bg-red-500 px-3 py-1 rounded text-white">
+        {/* <button className="bg-red-500 px-3 py-1 rounded text-white">
           <BiTrash size={24} onClick={() => setIsDeleteModalOpen(true)} />
-        </button>
-        <DeleteSurveyModal isOpen={isdeleteModalOpen} setIsModalOpen={setIsDeleteModalOpen} surveyId={survey._id} refetch={refetch} />
+        </button> */}
+        <Link to={`/dashboard/survey/${survey._id}`}>
+          <SecondaryBtn text="View" className={`p-0`} />
+          {/* <button className="px-5 py-3 bg-primary/90">View</button> */}
+        </Link>
+        {/* <DeleteSurveyModal isOpen={isdeleteModalOpen} setIsModalOpen={setIsDeleteModalOpen} surveyId={survey._id} refetch={refetch} /> */}
         <UpdateSurveyModal
           isOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}

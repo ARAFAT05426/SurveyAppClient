@@ -10,7 +10,6 @@ const SurveyDetails = () => {
   const axiosCommon = useAxiosCommon();
   const {
     data: survey = [],
-    // eslint-disable-next-line no-unused-vars
     refetch,
     isLoading,
   } = useQuery({
@@ -30,7 +29,7 @@ const SurveyDetails = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col gap-8">
           <Surveynow survey={survey} />
-          <SurveyComments />
+          <SurveyComments surveyId={survey._id} comments={survey.comments} refetch={refetch} />
         </div>
       </div>
     </section>

@@ -72,8 +72,9 @@ const SignUp = () => {
       <div className="bg-cover bg-no-repeat bg-center py-20 min-h-screen flex items-center justify-center" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${img})` }}>
         <div className="px-5 lg:px-28 rounded-sm grid grid-cols-1 lg:grid-cols-2 h-half lg:h-[80vh]">
           <div className="bg-no-repeat bg-cover bg-center hidden md:flex flex-col items-center justify-center rounded-s-lg" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(${img})` }}>
-            <img className="w-1/5 mx-auto" src="/logo.png" alt="Logo" />
-            <p className="font-semibold max-w-lg text-center text-white">
+          <Link to={"/"}>
+              <img className="w-1/5 mx-auto" src="/logo.png" alt="Logo" />
+            </Link>            <p className="font-semibold max-w-lg text-center text-white">
               Join our community by signing up for an account.
             </p>
           </div>
