@@ -42,14 +42,14 @@ const ManageUsers = () => {
                 id='roleSelect'
                 value={selectedRole}
                 onChange={(e) => setSelectedRole(e.target.value)}
-                className='border border-gray-300 rounded px-3 py-1 outline-none'>
+                className='border border-gray-300 rounded px-3 py-1'>
                 <option value="">All Roles</option>
                 {roles.map((role, index) => (
                   <option key={index} value={role}>{role}</option>
                 ))}
               </select>
             </div>
-            <div className='shadow rounded-md overflow-x-auto'>
+            <div className='shadow rounded-lg overflow-x-auto'>
               <table className='min-w-full leading-normal'>
                 <thead>
                   <tr>

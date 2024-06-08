@@ -9,6 +9,11 @@ const Links = () => (
       Home
     </NavLink>
     <NavLink 
+      to="/surveys" 
+      className={({ isActive }) => isActive ? "bg-primary/90 text-white active link" : "link"}>
+      Surveys
+    </NavLink>
+    <NavLink 
       to="/pricing" 
       className={({ isActive }) => isActive ? "bg-primary/90 text-white active link" : "link"}>
       Pricing

@@ -13,7 +13,7 @@ const PopularSurveys = () => {
   return (
     <section className="py-20 space-y-10">
       <Heading
-        title="Discover Our Most Popular Surveys"
+        title="Explore Our Most Feautured Surveys"
         subtitle="Engage with Trending Topics and Share Your Insights on the Most Discussed Surveys"
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 px-5 lg:px-32">

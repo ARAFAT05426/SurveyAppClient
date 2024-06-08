@@ -37,7 +37,6 @@ const SurveyTr = ({ survey, refetch }) => {
           <SecondaryBtn text="View" className={`p-0`} />
           {/* <button className="px-5 py-3 bg-primary/90">View</button> */}
         </Link>
-        {/* <DeleteSurveyModal isOpen={isdeleteModalOpen} setIsModalOpen={setIsDeleteModalOpen} surveyId={survey._id} refetch={refetch} /> */}
         <UpdateSurveyModal
           isOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}

@@ -64,7 +64,6 @@ const UserDataRow = ({ user, refetch }) => {
           ></span>
           <span className='relative'>Update Role</span>
         </button>
-        {/* Update User Modal */}
         <UpdateUserModal
           isOpen={isOpen}
           setIsOpen={setIsOpen}

@@ -31,25 +31,23 @@ const AddSurvey = () => {
       image: user?.photoURL,
       email: user?.email,
     };
-
-    // Map through the question keys and filter out those starting with 'question'
     const questions = Object.keys(data)
       .filter((key) => key.startsWith("question"))
       .map((key, index) => ({
         question: data[key], // Get the question value
         options: [
           {
-            option: `${data[`option${index}`]}`,
+            option: `${data[`option${index+1}`]}`,
             votecount: 0,
           },
           {
-            option: `${data[`option${index}`]}`,
+            option: `${data[`option${index+2}`]}`,
             votecount: 0,
           },
         ],
       }));
+      console.log(questions);
     const surveyData = {
-      surveyId: "unique_survey_id", // Add a unique survey ID
       title: data.title,
       description: data.description,
       category: data.category,
@@ -57,12 +55,13 @@ const AddSurvey = () => {
       deadline: { from: dates.startDate, to: dates.endDate },
       status: "publish",
       timestamp: Date.now(),
-      reaction: ["like", "dislike"],
       feedback: "",
-      comments: [], 
+      comments: [],
+      reports: [],   
       voters: [],
       host,
     };
+    console.log(surveyData);
     try {
       setLoading(true);
       await axiosSecure.post(`/survey`, surveyData);

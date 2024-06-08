@@ -120,11 +120,12 @@ const CheckoutForm = ({ closeModal, price, nrole }) => {
             },
           }}
         />
+          {cardError && <p className="text-red-600 text-xs text-center">{cardError}</p>}
         <div className="flex mt-2 justify-around">
           <button
             disabled={!stripe || !clientSecret || processing}
             type="submit"
-            className="inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
+            className="inline-flex justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium"
           >
             {processing ? (
               <ImSpinner9 className="animate-spin m-auto" size={24} />
@@ -132,16 +133,8 @@ const CheckoutForm = ({ closeModal, price, nrole }) => {
               `Pay ${price}`
             )}
           </button>
-          <button
-            onClick={() =>closeModal(false)}
-            type="button"
-            className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
-          >
-            Cancel
-          </button>
         </div>
       </form>
-      {cardError && <p className="text-red-600 ml-8">{cardError}</p>}
     </>
   );
 };

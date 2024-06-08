@@ -30,9 +30,9 @@ const UpdateSurveyModal = ({ isOpen, setIsModalOpen, survey, refetch }) => {
   const handleUpdate = async (data, e) => {
     console.log(data);
     const surveyData = {
-      title: data.title,
-      description: data.description,
-      questions: data.questions.map((q) => ({
+      title: data?.title,
+      description: data?.description,
+      questions: data?.questions?.map((q) => ({
         question: q.question,
         options: q.options.map((option) => ({
           option: option,

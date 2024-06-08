@@ -20,6 +20,9 @@ import ManageUsers from "../PAGES/DASHBOARD/ADMIN/ManageUsers/ManageUsers";
 import Voters from "../PAGES/DASHBOARD/SURVEYOR/Voters/Voters";
 import Payments from "../PAGES/DASHBOARD/ADMIN/Payments/Payments";
 import PerticipateSurvey from "../PAGES/DASHBOARD/USER/PerticipateSurvey/PerticipateSurvey";
+import MannageSurveys from "../PAGES/DASHBOARD/ADMIN/MannageSurveys/MannageSurveys";
+import CommentedSurvey from "../PAGES/DASHBOARD/USER/ConmentedSurvey/CommentedSurvey";
+import Surveys from "../PAGES/Surveys/Surveys";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "surveys",
+        element: <Surveys />
       },
       {
         path: "/survey/:id",
@@ -67,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: "perticipate",
         element: <PrivateRoute><PerticipateSurvey /></PrivateRoute>
+      },
+      {
+        path: "commented",
+        element: <PrivateRoute><CommentedSurvey /></PrivateRoute>
       },
       {
         path: "addSurvey",
@@ -99,6 +110,10 @@ const router = createBrowserRouter([
               <ManageUsers />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "manageSurveys",
+        element: <MannageSurveys />
       },
       {
         path: "payments",

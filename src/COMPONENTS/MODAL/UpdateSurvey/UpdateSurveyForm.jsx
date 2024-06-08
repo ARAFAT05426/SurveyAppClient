@@ -36,7 +36,7 @@ const UpdateSurveyForm = ({
         <div key={qi}>
           <TextInp
             title={`Question ${qi + 1}`}
-            name={`questions[${qi}].question`}
+            name={`questions${qi}.question`}
             register={register}
             defaultValue={q.question}
           />
@@ -44,7 +44,7 @@ const UpdateSurveyForm = ({
             <TextInp
               key={oi}
               title={`Option ${oi + 1}`}
-              name={`questions[${qi}].options[${oi}]`}
+              name={`questions${qi}.options${oi}`}
               register={register}
               defaultValue={option}
             />

@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
-import { FaRegSmile, FaRegFrown } from "react-icons/fa";
 import { RiAlarmLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 const SurveyCard = ({ survey }) => {
-  const { title, description, category, deadline, reaction, voters } = survey;
+  const { title, description, category, deadline, voters } = survey;
   return (
     <Link to={`/survey/${survey?._id}`}>
       <div className="p-5 rounded-lg shadow-md border hover:shadow-lg transition-shadow space-y-5">
@@ -14,16 +13,6 @@ const SurveyCard = ({ survey }) => {
           <div className="flex items-center gap-2">
             <RiAlarmLine size={20} />
             <span>{new Date(deadline.to).toLocaleDateString()}</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1">
-              <FaRegSmile size={20} />
-              <span>{reaction[0]}</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <FaRegFrown size={20} />
-              <span>{reaction[1]}</span>
-            </div>
           </div>
         </div>
         <div className="flex items-center justify-between">

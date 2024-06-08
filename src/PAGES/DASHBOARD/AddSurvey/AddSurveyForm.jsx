@@ -66,7 +66,7 @@ const AddSurveyForm = ({
           <div className="flex items-center gap-5">
             <div className="flex-1">
               <TextInp
-                title={`Option 1`}
+                title={`Option${index+1}`}
                 name={`option${index+1}`}
                 register={register}
               />
@@ -74,7 +74,7 @@ const AddSurveyForm = ({
             <div className="flex-1">
               <TextInp
                 title={`Option ${index+2}`}
-                name={`option${index}`}
+                name={`option${index+2}`}
                 register={register}
               />
             </div>

@@ -17,16 +17,13 @@ const Payments = () => {
       }
     },
   });
-
-  console.log(users);
-
   if (isLoading) {
     return <Loader />;
   }
 
   return (
-    <section>
-      <h1>Users with Payment Information</h1>
+    <section className="space-y-5">
+      <h1 className="text-3xl pl-5">Users with Payment Information</h1>
       {users.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white shadow-md rounded-md p-1">

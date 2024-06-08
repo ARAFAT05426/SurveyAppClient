@@ -6,8 +6,9 @@ import useToast from "../../../HOOKS/useToast";
 import "./Sidebar.css";
 import { useState } from "react";
 import { FaMoneyCheckDollar, FaUsersGear } from "react-icons/fa6";
-import { MdList, MdPlaylistAdd } from "react-icons/md";
-import { RiSurveyLine } from "react-icons/ri";
+import { MdInsertComment, MdList, MdPlaylistAdd } from "react-icons/md";
+import { RiSurveyLine, RiListSettingsFill } from "react-icons/ri";
+
 const Sidebar = () => {
   const { user, logOut } = useAuth();
   const { showToast } = useToast();
@@ -47,7 +48,7 @@ const Sidebar = () => {
         <div className="LDS_top space-y-5">
           <Link to="/">
             <img
-              className="hidden md:flex w-28 md:w-36 mx-auto"
+              className="hidden md:flex w-28 md:w-40 mx-auto"
               src="/logo.png"
               alt="Logo"
             />
@@ -77,6 +78,17 @@ const Sidebar = () => {
             Perticipate
           </NavLink>
           <NavLink
+            to="commented"
+            className={({ isActive }) =>
+              `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
+                isActive ? "border-l-primary/85" : "border-l-transparent"
+              }`
+            }
+          >
+            <MdInsertComment className="text-5xl" size={24} />
+            Commented
+          </NavLink>
+          <NavLink
             to="allUsers"
             className={({ isActive }) =>
               `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
@@ -86,6 +98,17 @@ const Sidebar = () => {
           >
             <FaUsersGear className="text-xl" size={24} />
             All Users
+          </NavLink>
+          <NavLink
+            to="manageSurveys"
+            className={({ isActive }) =>
+              `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
+                isActive ? "border-l-primary/85" : "border-l-transparent"
+              }`
+            }
+          >
+            <RiListSettingsFill className="text-xl" size={24} />
+            All Surveys
           </NavLink>
           <NavLink
             to="payments"

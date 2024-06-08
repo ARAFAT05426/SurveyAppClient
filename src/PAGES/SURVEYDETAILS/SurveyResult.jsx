@@ -1,9 +1,9 @@
 
-const SurveyResult = () => {
+const SurveyResult = ({survey}) => {
     return (
-        <div>
-            
-        </div>
+        <section>
+            <h1 className="text-8xl">Survey Result</h1>
+        </section>
     );
 };
 
