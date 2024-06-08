@@ -8,6 +8,7 @@ import { useState } from "react";
 import { FaMoneyCheckDollar, FaUsersGear } from "react-icons/fa6";
 import { MdInsertComment, MdList, MdPlaylistAdd } from "react-icons/md";
 import { RiSurveyLine, RiListSettingsFill } from "react-icons/ri";
+import { BiMessageAltError } from "react-icons/bi";
 
 const Sidebar = () => {
   const { user, logOut } = useAuth();
@@ -142,6 +143,17 @@ const Sidebar = () => {
           >
             <MdList className="text-xl" size={24} />
             My Surveys
+          </NavLink>
+          <NavLink
+            to="feedbacks"
+            className={({ isActive }) =>
+              `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
+                isActive ? "border-l-primary/85" : "border-l-transparent"
+              }`
+            }
+          >
+            <BiMessageAltError className="text-xl" size={24} />
+            Feedbacks
           </NavLink>
         </div>
 

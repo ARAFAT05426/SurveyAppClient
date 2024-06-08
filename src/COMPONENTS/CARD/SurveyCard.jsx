@@ -8,7 +8,7 @@ const SurveyCard = ({ survey }) => {
     <Link to={`/survey/${survey?._id}`}>
       <div className="p-5 rounded-lg shadow-md border hover:shadow-lg transition-shadow space-y-5">
         <h3 className="text-xl font-bold mb-2">{title}</h3>
-        <p className="text-gray-600">{description}</p>
+        <p className="text-gray-600 text-wrap">{description.slice(0, 35)}</p>
         <div className="flex items-center justify-between text-gray-500">
           <div className="flex items-center gap-2">
             <RiAlarmLine size={20} />

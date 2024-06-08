@@ -23,7 +23,7 @@ const MySurveys = () => {
                 Title
               </th>
               <th className="px-4 lg:px-6 py-3 text-left text-md font-bold uppercase tracking-wider">
-                Description
+                Category
               </th>
               <th className="px-4 lg:px-6 py-3 text-left text-md font-bold uppercase tracking-wider">
                 Added

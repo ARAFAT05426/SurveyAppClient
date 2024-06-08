@@ -20,19 +20,25 @@ const SurveyDetails = () => {
       return data;
     },
   });
+
   if (isLoading) {
     return <Loader />;
   }
+
+  const isAfterDeadline = new Date() > new Date(survey.deadline.to);
+
   return (
     <section className="min-h-screen bg-gray-100 py-20">
       <div className="container mx-auto px-4">
         <div className="flex flex-col gap-8">
-          {new Date(survey.deadline.to) >= new Date() ? (
+          {isAfterDeadline ? (
             <SurveyResult survey={survey} />
           ) : (
+            <>
             <Surveynow survey={survey} />
+            <SurveyComments surveyId={survey._id} comments={survey.comments} refetch={refetch} />
+            </>
           )}
-          <SurveyComments surveyId={survey._id} comments={survey.comments} refetch={refetch} />
         </div>
       </div>
     </section>

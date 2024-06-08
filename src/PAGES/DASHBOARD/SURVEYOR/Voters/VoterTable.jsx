@@ -11,7 +11,7 @@ const VoterTable = ({ voters }) => {
                         <th className="px-4 lg:px-6 py-3 text-left text-md font-bold uppercase tracking-wider">Name</th>
                         <th className="px-4 lg:px-6 py-3 text-left text-md font-bold uppercase tracking-wider">Email</th>
                         <th className="px-4 lg:px-6 py-3 text-left text-md font-bold uppercase tracking-wider">Date</th>
-                        <th className="px-4 lg:px-6 py-3 text-left text-md font-bold uppercase tracking-wider">Time</th>
+                        <th className="px-4 lg:px-6 py-3 text-left text-md font-bold uppercase tracking-wider">Vote</th>
                     </tr>
                 </thead>
                 {/* Table body */}
@@ -23,7 +23,7 @@ const VoterTable = ({ voters }) => {
                                 <td className="px-4 lg:px-6 py-3">{voter?.email}</td>
                                 <td className="px-4 lg:px-6 py-3">{voter?.email}</td>
                                 <td className="px-4 lg:px-6 py-3">{new Date(voter?.timestamp).toLocaleDateString()}</td>
-                                <td className="px-4 lg:px-6 py-3">{new Date(voter?.timestamp).toLocaleTimeString()}</td>
+                                <td className="px-4 lg:px-6 py-3">1</td>
                             </tr>
                         ))
                     ) : (

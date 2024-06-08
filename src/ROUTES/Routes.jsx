@@ -23,6 +23,7 @@ import PerticipateSurvey from "../PAGES/DASHBOARD/USER/PerticipateSurvey/Pertici
 import MannageSurveys from "../PAGES/DASHBOARD/ADMIN/MannageSurveys/MannageSurveys";
 import CommentedSurvey from "../PAGES/DASHBOARD/USER/ConmentedSurvey/CommentedSurvey";
 import Surveys from "../PAGES/Surveys/Surveys";
+import Feedbacks from "../PAGES/DASHBOARD/SURVEYOR/Feedbacks/Feedbacks";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
               <MyServeys />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "feedbacks",
+        element: <PrivateRoute><Feedbacks /></PrivateRoute>
       },
       {
         path: "survey/:id",
