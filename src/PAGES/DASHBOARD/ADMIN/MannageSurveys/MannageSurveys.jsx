@@ -1,10 +1,20 @@
 import { Helmet } from "react-helmet-async";
-import useAllSurveyData from "../../../../HOOKS/useAllSurveyData";
 import Loader from "../../../../COMPONENTS/LOADER/Loader";
 import MannageSurveyTr from "./MannageSurveyTr";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../../HOOKS/useAxiosSecure";
 const MannageSurveys = () => {
-  const { surveys = [], isLoading, refetch } = useAllSurveyData();
+  const axiosSecure = useAxiosSecure()
+  const { data: surveys = [], isLoading, error, refetch } = useQuery({
+    queryKey: ["allSurveys"],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/survey`);
+      return data;
+    },
+  });
+
   if (isLoading) return <Loader />;
+  if (error) return <div>Error: {error.message}</div>;
   return (
     <>
       <div className="container mx-auto px-4 sm:px-8">

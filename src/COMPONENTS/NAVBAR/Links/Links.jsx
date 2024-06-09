@@ -19,11 +19,6 @@ const Links = () => (
       Pricing
     </NavLink>
     <NavLink 
-      to="/about" 
-      className={({ isActive }) => isActive ? "bg-primary/90 text-white active link" : "link"}>
-      About
-    </NavLink>
-    <NavLink 
       to="/contact" 
       className={({ isActive }) => isActive ? "bg-primary/90 text-white active link" : "link"}>
       Contact

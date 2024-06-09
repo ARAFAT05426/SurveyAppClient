@@ -11,9 +11,9 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import Loader from '../../../../COMPONENTS/LOADER/Loader';
-import { useQuery } from 'react-query';
 import useAxiosCommon from '../../../../HOOKS/useAxiosCommon';
-
+import { useQuery } from "@tanstack/react-query";
+// Defined the renderCustomizedLabel function
 const renderCustomizedLabel = (props) => {
   const { x, y, width, value } = props;
   const radius = 10;
@@ -37,41 +37,47 @@ const renderCustomizedLabel = (props) => {
 const VotersChart = ({ id }) => {
   const axiosCommon = useAxiosCommon();
   const {
-    data: survey = {},
+    data: survey = [],
     isLoading,
   } = useQuery({
-    queryKey: ['survey', id],
+    queryKey: ['survey', id, "chart"],
     queryFn: async () => {
       const { data } = await axiosCommon.get(`/survey/${id}`);
       return data;
     },
   });
 
-  if (isLoading || !survey) {
+  if (isLoading || !survey || !survey.questions) {
     return <Loader />;
   }
+  const optionsAvailable = survey.questions.some(question => question.options.length > 0);
 
-  const data = survey.questions.map((question) => ({
-    name: question.text,
-    totalvote: question.options.reduce((total, option) => total + parseInt(option.votecount, 10), 0),
-    amt: 2400,
-  }));
+  if (!optionsAvailable) {
+    return <p>No options available for the survey questions.</p>;
+  }
 
-  // Check if there is enough data to show the chart
+  // Prepared data for bar chart
+  const data = survey.questions.flatMap((question) => (
+    question.options.map((option) => ({
+      question: question.text,
+      option: option.text,
+      voteCount: parseInt(option.votecount, 10),
+    }))
+  ));
   const enoughData = data.length > 0;
 
   return (
     <div>
       {enoughData ? (
-        <ResponsiveContainer width="100%" height={700}>
+        <ResponsiveContainer width="100%" height={600}>
           <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
+            <XAxis dataKey="option" />
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="totalvote" fill="#FECD08" minPointSize={5}>
-              <LabelList dataKey="name" content={renderCustomizedLabel} />
+            <Bar dataKey="voteCount" fill="#04ee04" minPointSize={5} barSize={75}>
+              <LabelList dataKey="option" content={renderCustomizedLabel} />
             </Bar>
           </BarChart>
         </ResponsiveContainer>

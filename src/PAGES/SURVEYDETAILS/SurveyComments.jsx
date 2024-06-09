@@ -16,7 +16,9 @@ const SurveyComments = ({ comments, surveyId, refetch }) => {
   const {role, isLoading} = useRole()
   const onSubmit = async (data) => {
     if (role !== "prouser") {
-      return toast.error("action not alowed")
+      return toast.error("Only Pro-Users can comment")
+    } else if(!user){
+      toast.error("Kindly login before comment")
     }
     try {
       const comment = {

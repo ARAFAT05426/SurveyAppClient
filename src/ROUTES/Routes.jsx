@@ -8,7 +8,6 @@ import Contact from "../PAGES/CONTACT/Contact";
 import Home from "../PAGES/HOME/Home";
 import Error from "../PAGES/ERROR/Error";
 import Main from "../LAYOUTS/MAIN/Main";
-import About from "../PAGES/ABOUT/About";
 import Dashboard from "../LAYOUTS/DASHBOARD/Dashboard";
 import AddSurvey from "../PAGES/DASHBOARD/AddSurvey/AddSurvey";
 import Pricing from "../PAGES/PRISING/Pricing";
@@ -24,6 +23,7 @@ import MannageSurveys from "../PAGES/DASHBOARD/ADMIN/MannageSurveys/MannageSurve
 import CommentedSurvey from "../PAGES/DASHBOARD/USER/ConmentedSurvey/CommentedSurvey";
 import Surveys from "../PAGES/Surveys/Surveys";
 import Feedbacks from "../PAGES/DASHBOARD/SURVEYOR/Feedbacks/Feedbacks";
+import Reported from "../PAGES/DASHBOARD/USER/Reported/Reported";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,10 +37,6 @@ const router = createBrowserRouter([
       {
         path: "/pricing",
         element: <Pricing />,
-      },
-      {
-        path: "/about",
-        element: <About />,
       },
       {
         path: "/contact",
@@ -81,6 +77,10 @@ const router = createBrowserRouter([
         element: <PrivateRoute><CommentedSurvey /></PrivateRoute>
       },
       {
+        path: "reported",
+        element: <PrivateRoute><Reported /></PrivateRoute>
+      },
+      {
         path: "addSurvey",
         element: (
           <PrivateRoute>
@@ -118,7 +118,7 @@ const router = createBrowserRouter([
       },
       {
         path: "manageSurveys",
-        element: <MannageSurveys />
+        element: <PrivateRoute><MannageSurveys /></PrivateRoute>
       },
       {
         path: "payments",

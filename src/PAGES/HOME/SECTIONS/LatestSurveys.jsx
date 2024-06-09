@@ -1,15 +1,14 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosCommon from "../../../HOOKS/useAxiosCommon";
 import Loader from "../../../COMPONENTS/LOADER/Loader";
 import SurveyCard from "../../../COMPONENTS/CARD/SurveyCard";
 import Heading from "../../../COMPONENTS/SECTIONS/Heading";
-import useAxiosCommon from "../../../HOOKS/useAxiosCommon";
-import { useQuery } from "@tanstack/react-query";
-
-const PopularSurveys = () => {
+const LatestSurveys = () => {
   const axiosCommon = useAxiosCommon();
   const { data: surveys = [], isLoading, error } = useQuery({
-    queryKey: ["popular"],
+    queryKey: ["latest"],
     queryFn: async () => {
-      const { data } = await axiosCommon.get(`/survey?popular=true`);
+      const { data } = await axiosCommon.get(`/survey?latest=true`);
       return data;
     },
   });
@@ -25,8 +24,8 @@ const PopularSurveys = () => {
   return (
     <section className="py-20 space-y-10">
       <Heading
-        title="Explore Our Most Featured Surveys"
-        subtitle="Engage with Trending Topics and Share Your Insights on the Most Discussed Surveys"
+        title="Discover the Latest Surveys"
+        subtitle="Stay Updated with the Newest Surveys and Share Your Opinions"
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 px-5 lg:px-32">
         {surveys.map((survey) => (
@@ -37,4 +36,4 @@ const PopularSurveys = () => {
   );
 };
 
-export default PopularSurveys;
+export default LatestSurveys;

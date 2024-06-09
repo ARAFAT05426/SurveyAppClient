@@ -1,13 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosCommon from "./useAxiosCommon";
-
-const useAllSurveyData = () => {
+const useAllStatusData = () => {
   const axiosCommon = useAxiosCommon();
 
   const { data: surveys = [], isLoading, error } = useQuery({
-    queryKey: ["publishedSurveys"],
+    queryKey: ["allstatus"],
     queryFn: async () => {
-      const { data } = await axiosCommon.get(`/survey?published=true`);
+      const { data } = await axiosCommon.get(`/survey`);
       return data;
     },
   });
@@ -15,4 +14,4 @@ const useAllSurveyData = () => {
   return { surveys, isLoading, error };
 };
 
-export default useAllSurveyData;
+export default useAllStatusData;

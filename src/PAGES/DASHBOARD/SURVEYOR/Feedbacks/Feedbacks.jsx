@@ -1,8 +1,16 @@
+import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../../COMPONENTS/LOADER/Loader";
-import useAllSurveyData from "../../../../HOOKS/useAllSurveyData";
+import useAxiosSecure from "../../../../HOOKS/useAxiosSecure";
 
 const Feedbacks = () => {
-    const { surveys, isLoading } = useAllSurveyData();
+    const axiosSecure = useAxiosSecure()
+    const { data: surveys = [], isLoading } = useQuery({
+      queryKey: ["allSurveys"],
+      queryFn: async () => {
+        const { data } = await axiosSecure.get(`/survey`);
+        return data;
+      },
+    });
     const unpublishedSurveys = surveys?.filter(survey => survey.status === "unpublish");
     
     if (isLoading) {

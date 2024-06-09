@@ -5,7 +5,6 @@ import Loader from '../../COMPONENTS/LOADER/Loader';
 import Surveynow from './Surveynow';
 import SurveyComments from './SurveyComments';
 import SurveyResult from './SurveyResult';
-
 const SurveyDetails = () => {
   const { id } = useParams();
   const axiosCommon = useAxiosCommon();
@@ -14,7 +13,7 @@ const SurveyDetails = () => {
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ['survey', id],
+    queryKey: ['surveyChart', id],
     queryFn: async () => {
       const { data } = await axiosCommon.get(`/survey/${id}`);
       return data;

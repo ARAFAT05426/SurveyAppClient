@@ -11,7 +11,7 @@ const HowItWorks = () => {
         subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
       />
       <div className="px-5 lg:px-32 py-5">
-        <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto">
           <div className="flex flex-col justify-center gap-3 items-center w-fit">
             <div
               className="p-5 rounded-full text-white"

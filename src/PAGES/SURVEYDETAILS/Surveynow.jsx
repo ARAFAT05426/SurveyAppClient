@@ -5,12 +5,14 @@ import useAxiosCommon from "../../HOOKS/useAxiosCommon";
 import { toast } from "react-hot-toast";
 import useAuth from "../../HOOKS/useAuth";
 import Heading from "../../COMPONENTS/SECTIONS/Heading";
-
+import { MdOutlineReport } from "react-icons/md";
+import ReportModal from "../../COMPONENTS/MODAL/ReportModal";
+import { useState } from "react";
 const Surveynow = ({ survey }) => {
   const { register, handleSubmit } = useForm();
   const axiosCommon = useAxiosCommon();
   const { user } = useAuth();
-
+  const [isOpen, setIsOpen] = useState(false);
   const onSubmit = async (data, e) => {
     if (!user) {
       return toast.error("Please login to vote");
@@ -35,19 +37,28 @@ const Surveynow = ({ survey }) => {
       toast.error("Error submitting vote. Please try again.");
     }
   };
-
   return (
     <div className="p-8 bg-white rounded-lg shadow-xl">
+      <div className="flex justify-end">
+        <MdOutlineReport className="cursor-pointer" size={50} onClick={() => setIsOpen(true)} />
+        <ReportModal isOpen={isOpen} setIsModalOpen={setIsOpen} id={survey._id} />
+      </div>
       <Heading title={survey.title} subtitle={survey.description} />
       <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
         {survey?.questions.map((question, questionIndex) => (
-          <div key={questionIndex} className="my-10 bg-gray-100 p-6 rounded-lg shadow-inner">
+          <div
+            key={questionIndex}
+            className="my-10 bg-gray-100 p-6 rounded-lg shadow-inner"
+          >
             <h2 className="text-2xl text-center font-semibold text-primary/80 mb-4">
               {question.question}
             </h2>
             <div className="flex flex-col items-center space-y-3">
               {question.options.map((option, optionIndex) => (
-                <label key={optionIndex} className="flex items-center space-x-3">
+                <label
+                  key={optionIndex}
+                  className="flex items-center space-x-3"
+                >
                   <input
                     type="radio"
                     name={`question${questionIndex}`}

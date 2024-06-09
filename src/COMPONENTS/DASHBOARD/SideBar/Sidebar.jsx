@@ -5,11 +5,11 @@ import useAuth from "../../../HOOKS/useAuth";
 import useToast from "../../../HOOKS/useToast";
 import "./Sidebar.css";
 import { useState } from "react";
-import { FaMoneyCheckDollar, FaUsersGear } from "react-icons/fa6";
-import { MdInsertComment, MdList, MdPlaylistAdd } from "react-icons/md";
-import { RiSurveyLine, RiListSettingsFill } from "react-icons/ri";
-import { BiMessageAltError } from "react-icons/bi";
-
+import { RiSurveyLine } from "react-icons/ri";
+import useRole from "../../../HOOKS/useRole";
+import UserTabs from "./Tabs/UserTabs";
+import SuveyorTabs from "./Tabs/SuveyorTabs";
+import AdminTabs from "./Tabs/AdminTabs";
 const Sidebar = () => {
   const { user, logOut } = useAuth();
   const { showToast } = useToast();
@@ -22,7 +22,7 @@ const Sidebar = () => {
       showToast("Error logging out. Please try again.", "error", "red");
     }
   };
-
+  const {role} = useRole()
   return (
     <>
       {/* SmallDevice Toggler */}
@@ -68,7 +68,8 @@ const Sidebar = () => {
         {/* Middle Area */}
         <div className="LDS_middle flex-1">
           <NavLink
-            to="perticipate"
+            to="/dashboard"
+            end
             className={({ isActive }) =>
               `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
                 isActive ? "border-l-primary/85" : "border-l-transparent"
@@ -76,85 +77,11 @@ const Sidebar = () => {
             }
           >
             <RiSurveyLine className="text-xl" size={24} />
-            Perticipate
+            Statistics
           </NavLink>
-          <NavLink
-            to="commented"
-            className={({ isActive }) =>
-              `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
-                isActive ? "border-l-primary/85" : "border-l-transparent"
-              }`
-            }
-          >
-            <MdInsertComment className="text-5xl" size={24} />
-            Commented
-          </NavLink>
-          <NavLink
-            to="allUsers"
-            className={({ isActive }) =>
-              `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
-                isActive ? "border-l-primary/85" : "border-l-transparent"
-              }`
-            }
-          >
-            <FaUsersGear className="text-xl" size={24} />
-            All Users
-          </NavLink>
-          <NavLink
-            to="manageSurveys"
-            className={({ isActive }) =>
-              `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
-                isActive ? "border-l-primary/85" : "border-l-transparent"
-              }`
-            }
-          >
-            <RiListSettingsFill className="text-xl" size={24} />
-            All Surveys
-          </NavLink>
-          <NavLink
-            to="payments"
-            className={({ isActive }) =>
-              `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
-                isActive ? "border-l-primary/85" : "border-l-transparent"
-              }`
-            }
-          >
-            <FaMoneyCheckDollar className="text-xl" size={24} />
-            Payments
-          </NavLink>
-          <NavLink
-            to="addSurvey"
-            className={({ isActive }) =>
-              `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
-                isActive ? "border-l-primary/85" : "border-l-transparent"
-              }`
-            }
-          >
-            <MdPlaylistAdd className="text-xl" size={24} />
-            Add Survey
-          </NavLink>
-          <NavLink
-            to="mySurveys"
-            className={({ isActive }) =>
-              `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
-                isActive ? "border-l-primary/85" : "border-l-transparent"
-              }`
-            }
-          >
-            <MdList className="text-xl" size={24} />
-            My Surveys
-          </NavLink>
-          <NavLink
-            to="feedbacks"
-            className={({ isActive }) =>
-              `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
-                isActive ? "border-l-primary/85" : "border-l-transparent"
-              }`
-            }
-          >
-            <BiMessageAltError className="text-xl" size={24} />
-            Feedbacks
-          </NavLink>
+          {role === "user" || "prouser" && <UserTabs />}
+          {role === "surveyor" && <SuveyorTabs />}
+          {role === "admin" && <AdminTabs />}
         </div>
 
         {/* Bottom Area */}

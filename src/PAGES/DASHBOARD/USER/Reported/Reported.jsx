@@ -9,7 +9,7 @@ const Reported = () => {
 
     // Filter surveys where user's email matches any of the report emails
     const filteredSurveys = surveys.filter(survey =>
-        survey.reports.some(report => report.user === user.email)
+        survey?.reports?.some(report => report.user === user.email)
     );
 
     return (
@@ -42,7 +42,7 @@ const Reported = () => {
                                                 .filter(report => report.user === user.email)
                                                 .map((report, index) => (
                                                     <div key={index}>
-                                                        {report.time && new Date(report.time.$numberDouble).toLocaleString()} {/* Format the date */}
+                                                        {report.time && new Date(report.time).toLocaleDateString()} {/* Format the date */}
                                                     </div>
                                                 ))}
                                         </td>

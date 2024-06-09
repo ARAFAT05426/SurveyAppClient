@@ -45,25 +45,11 @@ const UserDropdown = () => {
             }}
           >
             <NavLink
-              className="px-4 py-2 text-sm"
+              className="p-5 mb-2 text-sm"
               to="/dashboard"
               onClick={() => setIsOpen(false)}
             >
               Dashboard
-            </NavLink>
-            <NavLink
-              className="px-4 py-2 text-sm"
-              to="/profile"
-              onClick={() => setIsOpen(false)}
-            >
-              Profile
-            </NavLink>
-            <NavLink
-              className="px-4 py-2 text-sm"
-              to="/settings"
-              onClick={() => setIsOpen(false)}
-            >
-              Settings
             </NavLink>
             <PrimaryBtn className={'text-xs'} text="Log Out" type={'button'} onClick={handleLogOut} />
           </div>
