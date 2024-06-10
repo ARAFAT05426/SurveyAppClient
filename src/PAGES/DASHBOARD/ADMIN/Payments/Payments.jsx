@@ -49,7 +49,7 @@ const Payments = () => {
           </table>
         </div>
       ) : (
-        <p>No users with payment information found.</p>
+        <p className="ml-7">No users with payment information found.</p>
       )}
     </section>
   );

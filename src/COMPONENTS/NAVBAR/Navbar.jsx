@@ -26,11 +26,11 @@ const Navbar = () => {
       <div>
         {/* SMALL-DEVICE-LINKS */}
         <div className={`font-semibold snav flex ${isNavOpen ? "h-half opacity-100 py-16" : "h-0 opacity-0 py-0"} lg:hidden bg-black/75 backdrop-blur-3xl`}>
-          <Links />
+          <Links close={setIsNavOpen} />
         </div>
         {/* LARGE-DEVICE-LINKS */}
         <div className="font-bold hidden lg:flex items-center">
-          <Links />
+          <Links close={setIsNavOpen} />
         </div>
       </div>
       {/* RIGHT */}
