@@ -9,13 +9,10 @@ import Home from "../PAGES/HOME/Home";
 import Error from "../PAGES/ERROR/Error";
 import Main from "../LAYOUTS/MAIN/Main";
 import Dashboard from "../LAYOUTS/DASHBOARD/Dashboard";
-import AddSurvey from "../PAGES/DASHBOARD/AddSurvey/AddSurvey";
 import Pricing from "../PAGES/PRISING/Pricing";
 import SurverDetails from "../PAGES/SURVEYDETAILS/SurverDetails";
 import MyServeys from "../PAGES/DASHBOARD/SURVEYOR/MyServeys/MyServeys";
 import ManageUsers from "../PAGES/DASHBOARD/ADMIN/ManageUsers/ManageUsers";
-// import AdminRoute from "./AdminRoute";
-// import SuveyorRoute from "./SuveyorRoute";
 import Voters from "../PAGES/DASHBOARD/SURVEYOR/Voters/Voters";
 import Payments from "../PAGES/DASHBOARD/ADMIN/Payments/Payments";
 import PerticipateSurvey from "../PAGES/DASHBOARD/USER/PerticipateSurvey/PerticipateSurvey";
@@ -24,6 +21,10 @@ import CommentedSurvey from "../PAGES/DASHBOARD/USER/ConmentedSurvey/CommentedSu
 import Surveys from "../PAGES/Surveys/Surveys";
 import Feedbacks from "../PAGES/DASHBOARD/SURVEYOR/Feedbacks/Feedbacks";
 import Reported from "../PAGES/DASHBOARD/USER/Reported/Reported";
+import AddSurvey from "../PAGES/DASHBOARD/SURVEYOR/AddSurvey/AddSurvey";
+import ProUserRoute from "./ProUserRoute";
+import SurveyorRoute from "./SurveyorRoute";
+import AdminRoute from "./AdminRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
       },
       {
         path: "surveys",
-        element: <Surveys />
+        element: <Surveys />,
       },
       {
         path: "/survey/:id",
@@ -70,21 +71,37 @@ const router = createBrowserRouter([
       },
       {
         path: "perticipate",
-        element: <PrivateRoute><PerticipateSurvey /></PrivateRoute>
+        element: (
+          <PrivateRoute>
+            <PerticipateSurvey />
+          </PrivateRoute>
+        ),
       },
       {
         path: "commented",
-        element: <PrivateRoute><CommentedSurvey /></PrivateRoute>
+        element: (
+          <PrivateRoute>
+            <ProUserRoute>
+              <CommentedSurvey />
+            </ProUserRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "reported",
-        element: <PrivateRoute><Reported /></PrivateRoute>
+        element: (
+          <PrivateRoute>
+            <Reported />
+          </PrivateRoute>
+        ),
       },
       {
         path: "addSurvey",
         element: (
           <PrivateRoute>
-            <AddSurvey />
+            <SurveyorRoute>
+              <AddSurvey />
+            </SurveyorRoute>
           </PrivateRoute>
         ),
       },
@@ -92,19 +109,27 @@ const router = createBrowserRouter([
         path: "mySurveys",
         element: (
           <PrivateRoute>
+            <SurveyorRoute>
               <MyServeys />
+            </SurveyorRoute>
           </PrivateRoute>
         ),
       },
       {
         path: "feedbacks",
-        element: <PrivateRoute><Feedbacks /></PrivateRoute>
+        element: (
+          <PrivateRoute>
+            <Feedbacks />
+          </PrivateRoute>
+        ),
       },
       {
         path: "survey/:id",
         element: (
           <PrivateRoute>
+            <SurveyorRoute>
               <Voters />
+            </SurveyorRoute>
           </PrivateRoute>
         ),
       },
@@ -112,17 +137,29 @@ const router = createBrowserRouter([
         path: "allUsers",
         element: (
           <PrivateRoute>
+            <AdminRoute>
               <ManageUsers />
+            </AdminRoute>
           </PrivateRoute>
         ),
       },
       {
         path: "manageSurveys",
-        element: <PrivateRoute><MannageSurveys /></PrivateRoute>
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <MannageSurveys />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "payments",
-        element: <PrivateRoute><Payments /></PrivateRoute>
+        element: (
+          <PrivateRoute>
+            <Payments />
+          </PrivateRoute>
+        ),
       },
       {
         path: "userProfile",

@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       await signOut(auth);
-      localStorage.removeItem('token');
+      await localStorage.removeItem('token');
     } finally {
       setLoading(false);
     }
@@ -98,7 +98,7 @@ const AuthProvider = ({ children }) => {
         { email },
         { withCredentials: true }
       );
-      localStorage.setItem('token', data.token);
+      await localStorage.setItem('token', data.token);
       return data.token;
     } catch (error) {
       console.error('Error fetching token:', error);

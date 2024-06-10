@@ -10,10 +10,13 @@ import useRole from "../../../HOOKS/useRole";
 import UserTabs from "./Tabs/UserTabs";
 import SuveyorTabs from "./Tabs/SuveyorTabs";
 import AdminTabs from "./Tabs/AdminTabs";
+
 const Sidebar = () => {
   const { user, logOut } = useAuth();
   const { showToast } = useToast();
   const [isActive, setActive] = useState(false);
+  const { role } = useRole();
+
   const handleLogout = async () => {
     try {
       await logOut();
@@ -22,11 +25,11 @@ const Sidebar = () => {
       showToast("Error logging out. Please try again.", "error", "red");
     }
   };
-  const {role} = useRole()
+
   return (
     <>
-      {/* SmallDevice Toggler */}
-      <div className="SDS flex md:hidden bg-black/20 backdrop-blur-3xl w-full">
+      {/* Small Device Toggler */}
+      <div className="SDS flex lg:hidden bg-black/20 backdrop-blur-3xl w-full">
         <Link to={"/"}>
           <img className="w-28" src="/logo.png" alt="Logo" />
         </Link>
@@ -43,22 +46,24 @@ const Sidebar = () => {
           isActive
             ? "translate-x-0 opacity-100 w-60"
             : "-translate-x-full opacity-0 w-0"
-        } md:translate-x-0 md:w-60 md:opacity-100`}
+        } lg:translate-x-0 lg:w-60 lg:opacity-100`}
       >
         {/* Top Area */}
         <div className="LDS_top space-y-5">
           <Link to="/">
             <img
-              className="hidden md:flex w-28 md:w-40 mx-auto"
+              className="hidden lg:flex w-28 lg:w-40 mx-auto"
               src="/logo.png"
               alt="Logo"
             />
           </Link>
           <div className="space-y-2">
             <img
-              className="w-36 mx-auto p-1 rounded-full"
-              src={user?.photoURL}
-              alt="User"
+              onError={(e) => {
+                e.target.src = "https://i.ibb.co/nDMvB3b/image-Errr.gif";
+              }}
+              className="w-36 mx-auto p-1 bg-primary/80 rounded-full cursor-pointer"
+              src={user?.photoURL || "https://i.ibb.co/nDMvB3b/image-Errr.gif"}
             />
             <h1 className="font-bold text-center">{user?.displayName}</h1>
             <p className="font-semibold text-xs text-center">{user?.email}</p>
@@ -79,9 +84,9 @@ const Sidebar = () => {
             <RiSurveyLine className="text-xl" size={24} />
             Statistics
           </NavLink>
-          {role === "user" || "prouser" && <UserTabs />}
-          {role === "surveyor" && <SuveyorTabs />}
-          {role === "admin" && <AdminTabs />}
+          {role === "user" || role === "prouser" ? <UserTabs /> : null}
+          {role === "surveyor" ? <SuveyorTabs /> : null}
+          {role === "admin" ? <AdminTabs /> : null}
         </div>
 
         {/* Bottom Area */}

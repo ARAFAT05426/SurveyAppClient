@@ -3,12 +3,13 @@ import { MdOutlineVerified } from "react-icons/md";
 import { PiFlowArrowLight } from "react-icons/pi";
 import { HiOutlineEmojiHappy } from "react-icons/hi";
 import { TbFileLike } from "react-icons/tb";
+
 const HowItWorks = () => {
   return (
     <section className="space-y-5">
       <Heading
         title="See How It Works In 3 Simple Steps"
-        subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+        subtitle="Join our platform and start earning rewards in no time."
       />
       <div className="px-5 lg:px-32 py-5">
         <div className="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto">
@@ -23,8 +24,7 @@ const HowItWorks = () => {
             </div>
             <h1 className="text-2xl font-bold">Sign Up For Free</h1>
             <p className="text-center max-w-xs">
-              Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus
-              leo.
+              Create your free account to get started.
             </p>
           </div>
           <PiFlowArrowLight className="text-[#60B236] rotate-90 md:rotate-0 mb-10" size={170} />
@@ -39,8 +39,7 @@ const HowItWorks = () => {
             </div>
             <h1 className="text-2xl font-bold">Participate In Surveys</h1>
             <p className="text-center max-w-xs">
-              Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus
-              leo.
+              Share your opinions and take part in surveys.
             </p>
           </div>
           <PiFlowArrowLight className="text-[#60B236] rotate-90 md:rotate-0 mb-10" size={170} />
@@ -55,8 +54,7 @@ const HowItWorks = () => {
             </div>
             <h1 className="text-2xl font-bold">Earn Experiences</h1>
             <p className="text-center max-w-xs">
-              Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus
-              leo.
+              Accumulate experiences and rewards as you participate.
             </p>
           </div>
         </div>

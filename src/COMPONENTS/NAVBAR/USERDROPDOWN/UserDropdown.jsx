@@ -34,7 +34,8 @@ const UserDropdown = () => {
             }}
             onClick={() => setIsOpen(!isOpen)}
             className="w-14 h-14 p-1 bg-primary/80 rounded-full cursor-pointer"
-            src={user?.photoURL}
+            src={user?.photoURL || "https://i.ibb.co/nDMvB3b/image-Errr.gif"}
+            alt="User"
           />
           <div
             className={`absolute right-0 mt-1 text-white overflow-hidden bg-black/50 flex flex-col shadow-lg rounded px-5 text-center transition-all duration-500 ${
@@ -45,13 +46,18 @@ const UserDropdown = () => {
             }}
           >
             <NavLink
-              className="p-5 mb-2 text-sm"
+              className="px-5 py-2 mb-5 text-sm border-b-2 rounded-xl"
               to="/dashboard"
               onClick={() => setIsOpen(false)}
             >
               Dashboard
             </NavLink>
-            <PrimaryBtn className={'text-xs'} text="Log Out" type={'button'} onClick={handleLogOut} />
+            <PrimaryBtn
+              className={"text-xs"}
+              text="Log Out"
+              type={"button"}
+              onClick={handleLogOut}
+            />
           </div>
         </div>
       )}

@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
-import TextInp from "../../../COMPONENTS/FunctionalInputFields/TextInp";
 import { DateRange } from "react-date-range";
-import SelectInp from "../../../COMPONENTS/FunctionalInputFields/SelectInp";
-import PrimaryBtn from "../../../COMPONENTS/COMMON/BUTTONS/PrimaryBtn";
-import { surveyCategories } from "../../../COMPONENTS/surveyCategories";
 import { useState } from "react";
-import TextAreaInp from "../../../COMPONENTS/FunctionalInputFields/TextAreaInp";
+import TextInp from "../../../../COMPONENTS/FunctionalInputFields/TextInp";
+import TextAreaInp from "../../../../COMPONENTS/FunctionalInputFields/TextAreaInp";
+import SelectInp from "../../../../COMPONENTS/FunctionalInputFields/SelectInp";
+import { surveyCategories } from "../../../../COMPONENTS/surveyCategories";
+import PrimaryBtn from "../../../../COMPONENTS/COMMON/BUTTONS/PrimaryBtn";
 
 const AddSurveyForm = ({
   dates,

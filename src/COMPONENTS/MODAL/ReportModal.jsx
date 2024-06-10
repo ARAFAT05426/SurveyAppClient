@@ -14,7 +14,7 @@ import useAxiosCommon from "../../HOOKS/useAxiosCommon";
 import useAuth from "../../HOOKS/useAuth";
 import toast, { Toaster } from "react-hot-toast";
 
-const ReportModal = ({ isOpen, setIsModalOpen, id }) => {
+const ReportModal = ({ isOpen, setIsModalOpen, id , reports }) => {
   const axiosCommon = useAxiosCommon();
   const {user} = useAuth()
   const [loading, setLoading] = useState(false);
@@ -37,9 +37,11 @@ const ReportModal = ({ isOpen, setIsModalOpen, id }) => {
       user: user?.email,
       time: Date.now()
     };
-
-    if(!user){
+    const isReported = reports?.filter(reprt => reprt?.user == user?.email)
+    if (!user) {
       return toast.error("Kindly login to report")
+    } else if(isReported){
+      return toast.error("Already reported")
     }
     try {
       setLoading(true);
@@ -52,6 +54,7 @@ const ReportModal = ({ isOpen, setIsModalOpen, id }) => {
       setLoading(false);
     }
   };
+  
 
   return (
     <Fragment>
@@ -130,6 +133,7 @@ ReportModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   setIsModalOpen: PropTypes.func.isRequired,
   id: PropTypes.any,
+  reports: PropTypes.array
 };
 
 export default ReportModal;

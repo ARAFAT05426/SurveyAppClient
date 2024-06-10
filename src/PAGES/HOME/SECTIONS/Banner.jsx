@@ -5,7 +5,7 @@ const Banner = () => {
 
   return (
     <section
-      className="h-navMinus pt-20 bg-cover bg-center"
+      className="h-full lg:h-navMinus pt-20 bg-cover bg-center"
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${backgroundImage})`,
       }}

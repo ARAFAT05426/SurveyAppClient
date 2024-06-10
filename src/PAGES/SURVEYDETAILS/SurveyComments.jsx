@@ -3,16 +3,16 @@ import TextInp from "../../COMPONENTS/FunctionalInputFields/TextInp";
 import SecondaryBtn from "../../COMPONENTS/COMMON/BUTTONS/SecondaryBtn";
 import useAuth from "../../HOOKS/useAuth";
 import PropTypes from "prop-types";
-import useAxiosCommon from "../../HOOKS/useAxiosCommon";
 import { toast } from "react-hot-toast";
 import { formatDistanceToNow } from "date-fns";
 import useRole from "../../HOOKS/useRole";
 import Loader from "../../COMPONENTS/LOADER/Loader";
+import useAxiosSecure from "../../HOOKS/useAxiosSecure";
 
 const SurveyComments = ({ comments, surveyId, refetch }) => {
   const { register, handleSubmit, reset } = useForm();
   const { user } = useAuth();
-  const axiosCommon = useAxiosCommon();
+  const axiosSecure = useAxiosSecure();
   const {role, isLoading} = useRole()
   const onSubmit = async (data) => {
     if (role !== "prouser") {
@@ -27,7 +27,7 @@ const SurveyComments = ({ comments, surveyId, refetch }) => {
         text: data.comment,
         timestamp: Date.now(),
       };
-      await axiosCommon.patch(`/survey/comment/${surveyId}`, comment);
+      await axiosSecure.patch(`/survey/comment/${surveyId}`, comment);
       refetch();
       toast.success("Comment posted successfully");
       reset();

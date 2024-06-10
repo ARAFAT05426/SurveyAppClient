@@ -55,7 +55,7 @@ const Pricing = () => {
           ]}
         />
       </div>
-      <div className="absolute bottom-0 inset-x-0 overflow-hidden">
+      <div className="hidden md:flex absolute bottom-0 inset-x-0 overflow-hidden">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
             fill="#04ee04"

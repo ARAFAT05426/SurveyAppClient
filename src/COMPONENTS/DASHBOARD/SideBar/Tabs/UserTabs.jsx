@@ -1,8 +1,10 @@
 import { MdInsertComment } from "react-icons/md";
-import { RiSurveyLine } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
-
+import { LuListX } from "react-icons/lu";
+import { TfiWrite } from "react-icons/tfi";
+import useRole from "../../../../HOOKS/useRole";
 const UserTabs = () => {
+  const { role } = useRole();
   return (
     <>
       <NavLink
@@ -13,7 +15,7 @@ const UserTabs = () => {
           }`
         }
       >
-        <RiSurveyLine className="text-xl" size={24} />
+        <TfiWrite className="text-xl" size={24} />
         Perticipate
       </NavLink>
       <NavLink
@@ -24,20 +26,24 @@ const UserTabs = () => {
           }`
         }
       >
-        <MdInsertComment className="text-5xl" size={24} />
+        <LuListX className="text-5xl" size={24} />
         Reported
       </NavLink>
-      <NavLink
-        to="commented"
-        className={({ isActive }) =>
-          `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
-            isActive ? "border-l-primary/85" : "border-l-transparent"
-          }`
-        }
-      >
-        <MdInsertComment className="text-5xl" size={24} />
-        Commented
-      </NavLink>
+      {role !== "prouser" ? (
+        ""
+      ) : (
+        <NavLink
+          to="commented"
+          className={({ isActive }) =>
+            `flex items-center px-5 py-3 gap-3 text-sm lg:text-base font-semibold border-b border-black/10 border-l-4 ${
+              isActive ? "border-l-primary/85" : "border-l-transparent"
+            }`
+          }
+        >
+          <MdInsertComment className="text-5xl" size={24} />
+          Commented
+        </NavLink>
+      )}
     </>
   );
 };

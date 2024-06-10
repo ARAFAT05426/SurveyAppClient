@@ -41,7 +41,7 @@ const Surveynow = ({ survey }) => {
     <div className="p-8 bg-white rounded-lg shadow-xl">
       <div className="flex justify-end">
         <MdOutlineReport className="cursor-pointer" size={50} onClick={() => setIsOpen(true)} />
-        <ReportModal isOpen={isOpen} setIsModalOpen={setIsOpen} id={survey._id} />
+        <ReportModal isOpen={isOpen} setIsModalOpen={setIsOpen} id={survey._id} reports={survey?.reports} />
       </div>
       <Heading title={survey.title} subtitle={survey.description} />
       <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
@@ -50,7 +50,7 @@ const Surveynow = ({ survey }) => {
             key={questionIndex}
             className="my-10 bg-gray-100 p-6 rounded-lg shadow-inner"
           >
-            <h2 className="text-2xl text-center font-semibold text-primary/80 mb-4">
+            <h2 className="text-xl md:text-2xl text-center font-semibold text-primary/80 mb-4">
               {question.question}
             </h2>
             <div className="flex flex-col items-center space-y-3">
@@ -92,27 +92,7 @@ const Surveynow = ({ survey }) => {
 };
 
 Surveynow.propTypes = {
-  survey: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    questions: PropTypes.arrayOf(
-      PropTypes.shape({
-        question: PropTypes.string.isRequired,
-        options: PropTypes.arrayOf(
-          PropTypes.shape({
-            option: PropTypes.string.isRequired,
-            votecount: PropTypes.number.isRequired,
-          })
-        ).isRequired,
-      })
-    ).isRequired,
-    voters: PropTypes.arrayOf(
-      PropTypes.shape({
-        email: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-  }).isRequired,
+  survey: PropTypes.object.isRequired,
 };
 
 export default Surveynow;

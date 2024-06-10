@@ -7,7 +7,7 @@ const Heading = ({ title, subtitle }) => {
 
     return (
         <div className='flex flex-col items-center space-y-3'>
-            <h1 className='text-6xl font-bold text-center text-wrap'>
+            <h1 className='text-3xl md:text-4xl lg:text-6xl font-bold text-center text-wrap'>
                 {firstWord} {remainingWords}
             </h1>
             <hr className='border-b-2 border-b-secondary w-2/5 rounded-full ' />

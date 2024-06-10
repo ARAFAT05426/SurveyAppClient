@@ -6,11 +6,10 @@ const Payments = () => {
   const axiosSecure = useAxiosSecure();
 
   const { data: users = [], isLoading } = useQuery({
-    queryKey: ['users'],
+    queryKey: ['paidusers'],
     queryFn: async () => {
       try {
         const { data } = await axiosSecure.get('/user');
-        // Filter out users with non-empty payment objects
         return data.filter(user => user.payment && Object.keys(user.payment).length > 0);
       } catch (error) {
         throw new Error('Failed to fetch users');

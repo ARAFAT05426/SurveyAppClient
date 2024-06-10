@@ -37,7 +37,7 @@ const SignUp = () => {
       await updateUserProfile(name, url);
 
       // Reset form and navigate
-      navigate(location?.state || "/");
+      navigate(location?.state || "/dashboard");
       showToast('Welcome to KraftFix! Your account has been created.', 'success', '#007bff');
     } catch (error) {
       console.error("Sign up error:", error);
@@ -58,7 +58,7 @@ const SignUp = () => {
       setPending(true)
       await method();
       showToast('Welcome to KraftFix!', 'success', '#007bff');
-      navigate(location?.state || "/");
+      navigate(location?.state || "/dashboard");
     } catch (error) {
       console.error("Social sign-in error:", error);
       showToast('An error occurred. Please try again.', 'error', '#dc3545');

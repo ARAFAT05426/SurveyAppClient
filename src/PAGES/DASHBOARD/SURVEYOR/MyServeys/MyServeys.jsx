@@ -7,8 +7,8 @@ import useAuth from "../../../../HOOKS/useAuth";
 const MySurveys = () => {
   const axiosSecure = useAxiosSecure();
   const {user} = useAuth()
-  const { data: surveys = {}, isLoading, refetch } = useQuery({
-      queryKey: ['adminStats'],
+  const { data: surveys = [], isLoading, refetch } = useQuery({
+      queryKey: ['mysurveys'],
       queryFn: async () => {
           const { data } = await axiosSecure.get(`/survey/mysurvey/${user?.email}`);
           return data;

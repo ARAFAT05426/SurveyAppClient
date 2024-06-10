@@ -8,7 +8,7 @@ const AdminStatistics = () => {
     const axiosSecure = useAxiosSecure();
 
     const { data: statsData = {}, isLoading } = useQuery({
-        queryKey: ['adminStats'],
+        queryKey: ['adminStats', "stats"],
         queryFn: async () => {
             const { data } = await axiosSecure.get('/adminStat');
             return data;
@@ -16,10 +16,11 @@ const AdminStatistics = () => {
     });
 
     if (isLoading) return <Loader />;
-    const earningData = statsData.payments.map(payment => ({
+    
+    const earningData = statsData.payments?.map(payment => ({
         date: new Date(payment.timestamp).toDateString(),
         amount: parseFloat(payment.amount)
-    }));
+    })) || [];
 
     const hasEarningData = earningData.length > 0;
 
@@ -103,13 +104,17 @@ const AdminStatistics = () => {
             <div className='mt-12'>
                 {hasEarningData ? (
                     <ResponsiveContainer width="100%" height={500}>
-                        <BarChart data={earningData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                        <BarChart
+                            data={earningData}
+                            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                            barSize={50}
+                        >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="date" />
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="amount" fill="#82ca9d" barSize={50} />
+                            <Bar dataKey="amount" fill="#82ca9d" />
                         </BarChart>
                     </ResponsiveContainer>
                 ) : (

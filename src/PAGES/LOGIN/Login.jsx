@@ -31,7 +31,7 @@ const LogIn = () => {
       setPending(true);
       await signInUser(email, password);
       e.target.reset();
-      navigate(location?.state || "/");
+      navigate(location?.state || "/dashboard");
       showToast("Welcome Back to KraftFix", "success", "#007bff");
     } catch (error) {
       console.error(error.message);
@@ -50,7 +50,7 @@ const LogIn = () => {
       setPending(true);
       await method();
       showToast("Welcome Back to KraftFix", "success", "#007bff");
-      navigate(location?.state || "/");
+      navigate(location?.state || "/dashboard");
     } catch (error) {
       console.error("Error during social sign-in:", error);
       showToast("An error occurred. Please try again.", "error", "#dc3545");

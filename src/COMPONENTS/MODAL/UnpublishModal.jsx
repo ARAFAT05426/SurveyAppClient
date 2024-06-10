@@ -79,7 +79,7 @@ const UnpublishModal = ({ isOpen, setIsModalOpen, survey, refetch }) => {
                     <SelectInp
                       title={`Status`}
                       name="status"
-                      options={["publish", "unpublish"]}
+                      options={["unpublish", "publish"]}
                       register={register}
                     />
                     <TextAreaInp
@@ -89,10 +89,10 @@ const UnpublishModal = ({ isOpen, setIsModalOpen, survey, refetch }) => {
                     />
                     <div className="flex justify-center">
                       <button
-                        className={`px-5 py-3 rounded ${
+                        className={`px-5 py-3 rounded font-semibold ${
                           survey && survey.status === "publish"
-                            ? "bg-green-500 text-black"
-                            : "bg-red-500 text-white"
+                          ? "bg-red-500 text-white"
+                            : "bg-primary text-black"
                         }`}
                       >
                         {loading ? (
@@ -101,9 +101,9 @@ const UnpublishModal = ({ isOpen, setIsModalOpen, survey, refetch }) => {
                             className="animate-spin m-auto"
                           />
                         ) : survey && survey.status === "publish" ? (
-                          "Publish"
-                        ) : (
                           "Unpublish"
+                          ) : (
+                          "Publish"
                         )}
                       </button>
                     </div>

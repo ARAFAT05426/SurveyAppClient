@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Heading from "../../../COMPONENTS/SECTIONS/Heading";
 import AddSurveyForm from "./AddSurveyForm";
 import { useForm } from "react-hook-form";
-import useAxiosSecure from "../../../HOOKS/useAxiosSecure";
-import useToast from "../../../HOOKS/useToast";
-import useAuth from "../../../HOOKS/useAuth";
+import Heading from "../../../../COMPONENTS/SECTIONS/Heading";
+import useAxiosSecure from "../../../../HOOKS/useAxiosSecure";
+import useToast from "../../../../HOOKS/useToast";
+import useAuth from "../../../../HOOKS/useAuth";
 
 const AddSurvey = () => {
   const axiosSecure = useAxiosSecure();
