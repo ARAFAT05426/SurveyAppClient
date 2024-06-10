@@ -4,10 +4,16 @@ import SecondaryBtn from "../COMMON/BUTTONS/SecondaryBtn";
 import SubscriptionModal from "../MODAL/Subscription/SubscriptionModal";
 import { useState } from "react";
 import useRole from "../../HOOKS/useRole";
+import useAuth from "../../HOOKS/useAuth";
+import toast from "react-hot-toast";
 
 const PriceCard = ({ plan, price, features, best }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const {user} = useAuth()
   const handleModal = () => {
+    if(!user){
+      return toast.error("Login before purchase")
+    }
     setIsOpen(true);
   };
   const { role } = useRole();
