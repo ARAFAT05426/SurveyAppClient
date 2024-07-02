@@ -26,29 +26,30 @@ const AddSurveyForm = ({
   return (
     <form
       onSubmit={handleSubmit(handleAddSurvey)}
-      className="space-y-4 flex flex-col"
+      className="space-y-4 flex flex-col p-0 lg:p-4"
     >
       <div className="flex flex-col lg:flex-row gap-7">
         <div className="flex-1 space-y-4">
-          <TextInp title={"Title"} name="title" register={register} />
+          <TextInp title="Title" name="title" register={register} />
           <TextAreaInp
-            title={"Description"}
+            title="Description"
             name="description"
             register={register}
           />
           <SelectInp
-            title={"Category"}
+            title="Category"
             name="category"
             register={register}
             options={surveyCategories}
           />
         </div>
-        <div>
+        <div className="">
           <label className="text-lg font-bold">Deadline</label>
-          <div className="p-2 w-full lg:w-fit mx-auto border rounded shadow">
+          <div className="p-2 w-full lg:w-auto mx-auto border rounded shadow">
             <DateRange
               rangeColors={["#04ee04"]}
               editableDateInputs={true}
+              className="overflow-hidden"
               onChange={(item) => handleDates(item)}
               moveRangeOnFirstSelection={false}
               ranges={[dates]}
@@ -57,24 +58,24 @@ const AddSurveyForm = ({
         </div>
       </div>
       {questions.map((question, index) => (
-        <div key={index} className="flex-1 space-y-3 p-1s">
+        <div key={index} className="space-y-3 p-2 border rounded shadow">
           <TextInp
-            title={`Question${index + 1}`}
-            name={`question${index+1}`}
+            title={`Question ${index + 1}`}
+            name={`question${index + 1}`}
             register={register}
           />
-          <div className="flex items-center gap-5">
+          <div className="flex flex-col md:flex-row items-center gap-1 md:gap-5">
             <div className="flex-1">
               <TextInp
-                title={`Option${index+1}`}
-                name={`option${index+1}`}
+                title={`Option ${index * 2 + 1}`}
+                name={`option${index * 2 + 1}`}
                 register={register}
               />
             </div>
             <div className="flex-1">
               <TextInp
-                title={`Option ${index+2}`}
-                name={`option${index+2}`}
+                title={`Option ${index * 2 + 2}`}
+                name={`option${index * 2 + 2}`}
                 register={register}
               />
             </div>
@@ -88,7 +89,7 @@ const AddSurveyForm = ({
       >
         Add Question
       </button>
-      <PrimaryBtn text="Add Survey" type={"submit"} loading={loading} />
+      <PrimaryBtn text="Add Survey" type="submit" loading={loading} />
     </form>
   );
 };

@@ -1,31 +1,32 @@
-## KwickPolls
-# Category: 0020
+## KwikPoll Survey Application
 
-🌐 **Live Site URL:** [https://assignment-12-3b03a.web.app/]
+### Project Overview
 
-🔑 **Admin Username:** admin12@gmail.com
+Proctor Survey Application is a robust platform designed for easy survey creation, management, and analysis. It aims to streamline data collection processes and provide insightful analytics for various use cases, including academic research and customer feedback.
 
-🔒 **Admin Password:** Pa$$w0rd!
+### Live Site
 
-### Features
+Explore the live site: [Proctor Survey Application Live](https://assignment-12-3b03a.web.app/).
 
-- **Survey Creation:** Easily create and update surveys, view real-time analytics, and customize questions.
-- **Multi-platform Support:** Accessible on desktop, tablet, or mobile with secure user authentication.
-- **Admin Panel:** Manage users, publish surveys, view payments and responses.
-- **Surveyor Panel:** Create, view, and analyze survey responses with detailed information.
-- **Comment Feature:** Allow users to provide feedback and comments on surveys.
-- **Report Feature:** Enable users to report inappropriate surveys for moderation.
-- **Membership Management:** Control access and privileges with membership management.
-- **Survey Update:** Modify survey details including title, description, options, category, and deadline.
-- **Individual Survey Responses:** View responses for surveys created by the logged-in user in tabular form.
-- **Detailed Survey Responses:** Access detailed information and user responses for individual surveys.
-- **Surveyor Dashboard:** Provide a dedicated dashboard for survey creators to manage their surveys and responses.
+### Key Features
 
-### Plugins
+- **Effortless Survey Creation:** Create and customize surveys quickly with an intuitive interface.
+- **Real-Time Analytics:** Gain valuable insights with real-time analytics and detailed reports.
+- **Multi-Device Accessibility:** Access surveys seamlessly on desktop, tablet, and mobile devices for broader reach.
 
-- **[@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md):** Fast Refresh with Babel.
-- **[@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc):** Fast Refresh with SWC.
+### Technology Used
 
----
+- **Frontend:** React, Vite.js
+- **Backend:** Node.js, Express.js, MongoDB
+- **Authentication:** Firebase Authentication
+- **Development Tools:** Vite plugins for enhanced development experience.
 
-This README provides an overview of KwickPolls, a powerful survey website with a range of features to make survey creation and management easy and efficient.
+### Cloning Instructions
+
+To clone and set up Proctor Survey Application locally, follow these steps:
+
+1. Clone the repository from [GitHub](https://github.com/ARAFAT05426/SurveyAppClient.git).
+2. Navigate to the project directory.
+3. Install dependencies using `npm install`.
+4. Configure environment variables.
+5. Start the development server with `npm start`.
