@@ -6,7 +6,7 @@ Proctor Survey Application is a robust platform designed for easy survey creatio
 
 ### Live Site
 
-Explore the live site: [Proctor Survey Application Live](https://assignment-12-3b03a.web.app/).
+Explore the live site: [KwikPoll Survey Application Live](https://assignment-12-3b03a.web.app/).
 
 ### Key Features
 
