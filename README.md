@@ -2,7 +2,7 @@
 
 ### Project Overview
 
-Proctor Survey Application is a robust platform designed for easy survey creation, management, and analysis. It aims to streamline data collection processes and provide insightful analytics for various use cases, including academic research and customer feedback.
+KwikPoll Survey Application is a robust platform designed for easy survey creation, management, and analysis. It aims to streamline data collection processes and provide insightful analytics for various use cases, including academic research and customer feedback.
 
 ### Live Site
 
